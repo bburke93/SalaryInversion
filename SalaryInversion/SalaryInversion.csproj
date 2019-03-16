@@ -86,6 +86,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\2017-18Inversion.xlsx" />
+    <None Include="Data\2018eqmodel-current-flat.xlsx" />
+    <None Include="Data\2018eqmodel-current.xlsx" />
+    <None Include="Data\2019eqmodel-flat.xlsx" />
+    <None Include="Data\2019eqmodel.xlsx" />
+    <None Include="Data\Salary Inversion Presentation - 2018-2019 data.pptx" />
+    <None Include="Data\SalaryInversion2018.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
