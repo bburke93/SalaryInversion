@@ -23,7 +23,7 @@ private void UpdatePhone(string phone) { // PascalCase
 private string PhoneNumber { get; set; }
 ```
 
-* Do **Not** use Hungarian notation such as `string strHello = 'Hello World'`. Visual Studio makes it very easy to tell what type a variable is making this notation redundant.
+* Do **not** use Hungarian notation such as `string strHello = 'Hello World'`. Visual Studio makes it very easy to tell what type a variable is making this notation redundant.
 
 
 * Create properties and methods that have descriptive, easy to understand names. Good code is self documenting. Where possible name methods in the style of VerbNoun such as ` private void CreateContact() `.
