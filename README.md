@@ -1,4 +1,7 @@
-# Team (TBD) coding standards
+# WSU Salary Inversion project
+* This project was created in CS 3750 at Weber State University and is used to indentify cases of salary inversion within the university.
+
+# Team Uno coding standards
 
 ## Visual Studio/Intellisense is your best friend. 
 * Most of these standards are from the official Microsoft C# standards so Intellisense will be a huge help to you.
