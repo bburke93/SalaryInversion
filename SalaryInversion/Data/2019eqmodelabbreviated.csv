@@ -1,0 +1,549 @@
+CLG,DEPT.,NAME,RNK,9MSALARY
+A&H,VIS ARTS,"Banerji, Naseem A",Prof,70004
+A&H,VIS ARTS,"Bauer, Micah J",Asst,52020
+A&H,VIS ARTS,"Biddle, Mark A",Prof,87267
+A&H,VIS ARTS,"Choberka, Matthew Paul",Prof,74277
+A&H,VIS ARTS,"Clarkson, Larry G",Asso,65146
+A&H,VIS ARTS,"Crow, Paul H",Asso,58801
+A&H,VIS ARTS,"Huxhold, Dianna Marie",Asst,52696
+A&H,VIS ARTS,"Klover, Taylor",Asst,52000
+A&H,VIS ARTS,"Manley, Jason Robert",Asso,59316
+A&H,VIS ARTS,"Morin, Molly Caitlin",Asso,58772
+A&H,VIS ARTS,"Pagel, Angelika",Prof,78486
+A&H,VIS ARTS,"Stevenson, Kathleen Marion",Prof,76923
+A&H,VIS ARTS,"Winegar, Joshua R",Asso,61958
+A&H,VIS ARTS,"Wolochowicz, Stephen J",Asso,59007
+A&H,PERF ARTS,"Bruestle, Karen B",Prof,70166
+A&H,PERF ARTS,"Callahan, Tracy L",Prof,78772
+A&H,PERF ARTS,"Campbell, Carey L",Asso,60728
+A&H,PERF ARTS,"De Galvez Aranda, Carlos Francisco",Asso,61142
+A&H,PERF ARTS,"Feller, David E",Prof,78801
+A&H,PERF ARTS,"Goldbogen, Tamara Davida",Asst,66942
+A&H,PERF ARTS,"Greenberg, Jessica Michele",Asst,53772
+A&H,PERF ARTS,"Henderson, Mark A",Prof,72519
+A&H,PERF ARTS,"Jonas, Daniel M",Asst,53772
+A&H,PERF ARTS,"Kokai, Jennifer Anne",Asso,62200
+A&H,PERF ARTS,"Lawrence, Joanne L",Prof,83878
+A&H,PERF ARTS,"Lewis, Andrew",Asst,51000
+A&H,PERF ARTS,"Priest, Thomas L",Prof,79496
+A&H,PERF ARTS,"Roberts, Shannon B",Asst,53772
+A&H,PERF ARTS,"Sowerby, Amanda Lee",Prof,73008
+A&H,PERF ARTS,"Stern, Erik A",Prof,86585
+A&H,PERF ARTS,"Transleau, Samantha Marie",Asst,51000
+A&H,PERF ARTS,"Uzur, Viktor",Asso,61105
+A&H,PERF ARTS,"Van der Beek, Ralph",Asso,60415
+A&H,PERF ARTS,"Wang, Shi-hwa",Prof,79945
+A&H,PERF ARTS,"Wang, Shijun",Asst,51000
+A&H,PERF ARTS,"Yang, Yu-Jane",Prof,95227
+A&H,PERF ARTS,"Zublin, Catherine A",Prof,100751
+A&H,FOR LANG,"Adachi, Tomono",Instr,34004
+A&H,FOR LANG,"Asensio, Isabel",Prof,74093
+A&H,FOR LANG,"Batista, Diego Rey",Asso,61363
+A&H,FOR LANG,"Bergeson, Craig N",Prof,78918
+A&H,FOR LANG,"Esquivias, Chantal",Instr,41440
+A&H,FOR LANG,"Fielding, Electra Gamon",Asso,61711
+A&H,FOR LANG,"Jones Kubiak, Aubrey",Asst,52732
+A&H,FOR LANG,"Mathews, Thomas J",Prof,78275
+A&H,FOR LANG,"Peckenpaugh, Kacy M",Asst,54423
+A&H,FOR LANG,"Szalay, Eva L",Prof,67996
+A&H,FOR LANG,"Trimble, John Copin",Asst,54317
+A&H,ENGLISH,"Asay, Toni J",Instr,40727
+A&H,ENGLISH,"Barrett-Fox, Jason E",Asst,52661
+A&H,ENGLISH,"Burrows, J Russell",Prof,65587
+A&H,ENGLISH,"Call, Christy Ann",Asst,53772
+A&H,ENGLISH,"Conrad, Timothy R",Asso,59833
+A&H,ENGLISH,"Craggett, Courtney",Asst,51000
+A&H,ENGLISH,"Crimmel, Henry H",Prof,80062
+A&H,ENGLISH,"Cumpsty, Rebekah",Asst,51498
+A&H,ENGLISH,"Gesteland, Becky Jo",Prof,78529
+A&H,ENGLISH,"Griffiths, Sian Bethany",Asso,63335
+A&H,ENGLISH,"Hamer, Jan L",Instr,41476
+A&H,ENGLISH,"Hartwig, David",Asst,51569
+A&H,ENGLISH,"Hudson, Kyra",Instr,44040
+A&H,ENGLISH,"Kelly, Brooke",Instr,42317
+A&H,ENGLISH,"LeTourneau, Mark S",Prof,83544
+A&H,ENGLISH,"Marchant, Becky Jean",Instr,41307
+A&H,ENGLISH,"McKay, Susan",Asso,59725
+A&H,ENGLISH,"Moloney, Karen Marguerite",Prof,81573
+A&H,ENGLISH,"Newman, Sylvia",Instr,47555
+A&H,ENGLISH,"Olson, Eleanor",Instr,35282
+A&H,ENGLISH,"Otero, Jose L",Instr,36630
+A&H,ENGLISH,"Panko, Julia L",Asst,53772
+A&H,ENGLISH,"Petersen, Emily",Asst,51640
+A&H,ENGLISH,"Pollett, William John",Instr,41636
+A&H,ENGLISH,"Ridge, Ryan Christopher",Asst,52732
+A&H,ENGLISH,"Rogers, Scott T",Prof,72530
+A&H,ENGLISH,"Schwiebert, John E",Prof,82977
+A&H,ENGLISH,"Shigley, Sally Bishop",Prof,83326
+A&H,ENGLISH,"Smith, Abraham",Asst,52732
+A&H,ENGLISH,"Stott, Laura Kay",Instr,37017
+A&H,ENGLISH,"Subbiah, Mahalingam",Prof,79333
+A&H,ENGLISH,"Thomas, Shelley Lynn",Asso,60691
+A&H,ENGLISH,"Vause, L Mikel",Prof,83913
+A&H,ENGLISH,"Vause, Sarah",Instr,37990
+A&H,ENGLISH,"Wutz, Michael",Prof,82856
+A&H,ENGLISH,"Yngve, Gail F",Instr,42353
+A&H,ENGLISH,"Young, James E",Prof,79617
+A&H,COMMUNICATION,"Ault, Michael Kennedy",Asst,52696
+A&H,COMMUNICATION,"Baltazar, Andrea",Asst,53574
+A&H,COMMUNICATION,"Bialowas, Anne Marie",Asso,62941
+A&H,COMMUNICATION,"Cheek, Ryan K",Instr,42820
+A&H,COMMUNICATION,"Corbin, Nicola Amanda Johanna",Asst,59001
+A&H,COMMUNICATION,"Gillen, Hailey Grace",Asst,53736
+A&H,COMMUNICATION,"Gomez, Stephanie Lynn",Instr,40800
+A&H,COMMUNICATION,"Hafen, Susan",Prof,80509
+A&H,COMMUNICATION,"Haislett, Robin Lillian",Instr,47227
+A&H,COMMUNICATION,"Howerton, Leslie D",Instr,47316
+A&H,COMMUNICATION,"Johns, Rebecca L",Prof,71338
+A&H,COMMUNICATION,"Josephson, Sheree",Prof,87526
+A&H,COMMUNICATION,"Lancaster, Alexander L",Asst,53736
+A&H,COMMUNICATION,"Norman, Jean Marie",Asst,53736
+A&H,COMMUNICATION,"Orozco, Andres Nevarez",Asst,55675
+A&H,COMMUNICATION,"Packer Berg, Colleen",Prof,78552
+A&H,COMMUNICATION,"Rodriguez, Nathan",Asst,52000
+A&H,COMMUNICATION,"Steimel, Sarah Jeanine Bourassa",Asso,60979
+A&H,COMMUNICATION,"Van Gilder, Bobbi",Asst,52000
+A&H,COMMUNICATION,"Warnock, Brent W",Instr,35278
+B&E,SC and MIS,"Barlow, Evan Tolman",Asst,132131
+B&E,SC and MIS,"Boyle, Randall J",Asso,115846
+B&E,SC and MIS,"Clements, Jeff",Asst,115060
+B&E,SC and MIS,"Fawcett, Amydee Mackley",Asst,135121
+B&E,SC and MIS,"Fawcett, Stanley Edward",Prof,211089
+B&E,SC and MIS,"Giraud-Carrier, Francois",Asst,127000
+B&E,SC and MIS,"Le, Taowen",Prof,107890
+B&E,SC and MIS,"Schvaneveldt, Shane J",Prof,141191
+B&E,SC and MIS,"Song, Seokwoo",Prof,136208
+B&E,SC and MIS,"Zhang, Lixuan",Asst,115903
+B&E,ECON,"Ahmad, Nazneen",Asso,94189
+B&E,ECON,"Gnagey, Matthew Keith",Asst,85626
+B&E,ECON,"Grijalva, Therese Anne c",Prof,121487
+B&E,ECON,"Keinsley, Andrew C",Asst,85812
+B&E,ECON,"Koford, Brandon C",Asso,96050
+B&E,ECON,"La Parra Perez, Alvaro",Asst,85626
+B&E,ECON,"Mbaku, John M",Prof,138136
+B&E,ECON,"Rangaraju, Sandeep",Asst,84897
+B&E,ECON,"Roberts, Gavin",Asst,82040
+B&E,ECON,"Stevenson, Doris Geide",Prof,126226
+B&E,ECON,"Yencha, Christopher",Asst,81760
+B&E,BUS ADMIN,"Allred, Anthony T",Prof,134181
+B&E,BUS ADMIN,"Amos, Clinton Leon",Asso,127804
+B&E,BUS ADMIN,"Anderson, Jennifer Susan",Asst,119068
+B&E,BUS ADMIN,"Fox Kirk, Wendy",Asst,115342
+B&E,BUS ADMIN,"Hansen, Shaun D",Asso,129207
+B&E,BUS ADMIN,"King, Jesse",Asst,117794
+B&E,BUS ADMIN,"King, Skyler Masaji",Asst,115484
+B&E,BUS ADMIN,"Noack, David",Asst,120608
+B&E,BUS ADMIN,"Read, David William",Asso,126334
+B&E,BUS ADMIN,"Stevens, Michael J",Prof,139268
+B&E,BUS ADMIN,"Stoddard, Brandon",Instr,88911
+B&E,BUS ADMIN,"Thompson, Bryant S",Asst,120001
+B&E,BUS ADMIN,"Thue, Matthew",Instr,82000
+B&E,ACCTNG,"Chambers, Valerie",Asst,141036
+B&E,ACCTNG,"Costello, Darcie Marie",Asst,144138
+B&E,ACCTNG,"Davis, Jefferson T",Prof,101510
+B&E,ACCTNG,"Fan, Yuhong",Asso,115989
+B&E,ACCTNG,"Gouldman, Andrea L.",Asst,149115
+B&E,ACCTNG,"Hansen, James Charles",Asso,153880
+B&E,ACCTNG,"Hopkins, Lisa K",Instr,56648
+B&E,ACCTNG,"Kattelman, Loisanne G",Instr,62373
+B&E,ACCTNG,"Malone, John D",Prof,144373
+B&E,ACCTNG,"Morgan, Terrilyn B",Instr,64310
+B&E,ACCTNG,"Mouritsen, Matthew L",Prof,128291
+B&E,ACCTNG,"Pace, Ryan H",Prof,133241
+B&E,ACCTNG,"Smith, Eric S",Asso,127126
+B&E,ACCTNG,"Turner, James A",Asso,119894
+B&E,ACCTNG,"Wang, WeiWei",Asst,143575
+CE,ENGLISH-LEAP,"Curtis, Giana C",Instr,52977
+CE,ENGLISH-LEAP,"Hudson, Amy Reimann",Instr,42179
+CE,ENGLISH-LEAP,"Sheridan, Deborah J",Instr,44352
+EAST,PROF SALES,"Adams, Brock",Asst,70000
+EAST,PROF SALES,"Border, Tim E",Asso,78570
+EAST,PROF SALES,"Casler, Velton S",Prof,85484
+EAST,PROF SALES,"Cooper, Desiree",Prof,88997
+EAST,PROF SALES,"Eichmeier, Steven H",Prof,94103
+EAST,PROF SALES,"Flink, Nicole",Instr,60000
+EAST,PROF SALES,"Jonsson, Jo Ellen G",Asso,72171
+EAST,PROF SALES,"Lawrence, Alexander Castell",Asst,123286
+EAST,PROF SALES,"Nielson, Blake E",Asso,125816
+EAST,ENGINEERING,"Brown, Fon R",Asso,88619
+EAST,ENGINEERING,"Hagen, Kirk D",Prof,113533
+EAST,ENGINEERING,"Hearn, Christian W.",Asso,78990
+EAST,ENGINEERING,"Jackson, Justin B",Prof,96315
+EAST,ENGINEERING,"Naik, Suketu",Asst,81939
+EAST,ENGINEERING,"Nair, Dhanya",Asst,78757
+EAST,ENGINEERING,"Trampel, Christopher Paul",Asst,76476
+EAST,ENGINEERING,"Zeng, Gengsheng Lawrence",Asso,93260
+EAST,ENG TECH,"Baugh, Mark R",Prof,95612
+EAST,ENG TECH,"Birch, Dustin S",Asso,87515
+EAST,ENG TECH,"Comber, George",Prof,90288
+EAST,ENG TECH,"Foss, Mary Ruth",Asst,64581
+EAST,ENG TECH,"Foss, Taylor",Instr,60000
+EAST,ENG TECH,"Harward, Kelly A",Prof,91489
+EAST,ENG TECH,"Hunter, Samuel",Instr,62000
+EAST,ENG TECH,"Kent, Randall",Instr,62123
+EAST,ENG TECH,"Knighton, Justin",Instr,63005
+EAST,ENG TECH,"Magda, Daniel J",Prof,90298
+EAST,ENG TECH,"McCulley, Julanne K",Asso,73010
+EAST,ENG TECH,"Orr, Rick W",Prof,95197
+EAST,ENG TECH,"Petersen, Spencer Justin",Asst,68256
+EAST,ENG TECH,"Strahan, Jeffry",Instr,60000
+EAST,ENG TECH,"Tobin, Kerry N",Prof,88403
+EAST,ENG TECH,"Usui, Megumi",Asso,77340
+EAST,ENG TECH,"West, Glen O",Asso,80915
+EAST,ENG TECH,"Wetzel, David",Asst,75000
+EAST,COMPUTING,"Al-Gahmi, Abdulmalek",Asst,80242
+EAST,COMPUTING,"Anderson, Laura S",Instr,56749
+EAST,COMPUTING,"Ball, Robert G",Asst,76232
+EAST,COMPUTING,"Brinkerhoff, Delroy A",Prof,98193
+EAST,COMPUTING,"Cowan, Ted A",Instr,71697
+EAST,COMPUTING,"Drake, Andrew T",Instr,66805
+EAST,COMPUTING,"DuHadway, Linda Pope",Asst,79807
+EAST,COMPUTING,"Fernandez, Luke O",Asst,58993
+EAST,COMPUTING,"Feuz, Kyle D",Asst,76662
+EAST,COMPUTING,"Fry, Richard C",Prof,93891
+EAST,COMPUTING,"Hepler, AJ",Instr,63829
+EAST,COMPUTING,"Hilton, Spencer Leonard",Instr,67727
+EAST,COMPUTING,"Huson, Mark",Asst,68000
+EAST,COMPUTING,"Jensen, Joshua N",Instr,61996
+EAST,COMPUTING,"MacLeod, Laura G",Asso,83372
+EAST,COMPUTING,"Murphy, Kim",Instr,58000
+EAST,COMPUTING,"Paulson, Matthew",Instr,77213
+EAST,COMPUTING,"Peterson, Bradley R",Instr,62840
+EAST,COMPUTING,"Rague, Brian W",Prof,101983
+EAST,COMPUTING,"Satterthwaite, Faith Joy",Instr,58805
+EAST,COMPUTING,"Saunders, Allyson D",Prof,93785
+EAST,COMPUTING,"Squadroni, Cody",Instr,61770
+EAST,COMPUTING,"Sunderland, Alison A",Instr,54965
+EAST,COMPUTING,"Tuck, Garth E",Instr,67693
+EAST,COMPUTING,"Valle, Hugo Edilberto",Asst,68809
+EAST,COMPUTING,"Weidman, Drew A",Asso,77867
+EAST,COMPUTING,"Zhang, Yong",Asso,75179
+EAST,CMT,"Arnold, Kristen J",Asso,59193
+EAST,CMT,"Butler, Russell Carl",Instr,68256
+EAST,CMT,"Call, John Robert",Instr,48000
+EAST,CMT,"Farner, Jeremy R",Asso,80363
+EAST,CMT,"Johnson, Jacie S",Instr,46773
+EAST,CMT,"Morris, Shauna Rae",Instr,55867
+EAST,CMT,"Peterson, Steven J",Prof,97573
+EAST,CMT,"Soelberg, Chris V",Asso,77856
+EAST,CMT,"van der Have, Pieter J",Instr,65226
+EAST,CMT,"Wolfe, Joseph M",Asso,76855
+EAST,AUTO TECH,"Hadzik, Scott Micheal",Asso,73064
+EAST,AUTO TECH,"Kelly, John D",Prof,95840
+EAST,AUTO TECH,"Newbold, Blair",Instr,56768
+EAST,AUTO TECH,"Slater, Jessica Ann",Instr,54054
+EAST,AUTO TECH,"Speigle, William L",Instr,69766
+EDUC,TEACHER ED,"Alexander, Melina",Prof,69098
+EDUC,TEACHER ED,"Bates, Vincent C",Asso,62570
+EDUC,TEACHER ED,"Byrd, David R",Asso,62808
+EDUC,TEACHER ED,"Byrne, Caitlin",Asst,56000
+EDUC,TEACHER ED,"Cain, Ryan",Instr,43000
+EDUC,TEACHER ED,"Cena, Michael E",Prof,77262
+EDUC,TEACHER ED,"Crawford, Forrest C",Prof,82557
+EDUC,TEACHER ED,"Dawson, Shirley A",Asst,56869
+EDUC,TEACHER ED,"Ellis, Ann Larson",Asso,66686
+EDUC,TEACHER ED,"Green, Jennifer M",Asst,56000
+EDUC,TEACHER ED,"Hadley, Kristin M",Prof,71850
+EDUC,TEACHER ED,"Mayhew, John Clinton",Prof,73672
+EDUC,TEACHER ED,"Moulding, Louise R",Prof,75898
+EDUC,TEACHER ED,"Mower, DeAnna J",Asst,56994
+EDUC,TEACHER ED,"Pyle, Danile",Asst,56412
+EDUC,TEACHER ED,"Rasmussen, Clay L",Asso,62433
+EDUC,TEACHER ED,"Rushton, Sheryl Jean",Asst,56994
+EDUC,TEACHER ED,"Saunders, Peggy J",Prof,72839
+EDUC,TEACHER ED,"Speicher, Stephanie",Asst,56558
+EDUC,TEACHER ED,"Stewart, Pene'e W",Prof,75974
+EDUC,TEACHER ED,"Williams, Natalie Allen",Prof,70168
+EDUC,TEACHER ED,"Wrosch, Nadia",Asst,56981
+EDUC,HP&HP ,"Aguilar, Christina",Instr,43860
+EDUC,HP&HP ,"Butts, Cory",Asst,56000
+EDUC,HP&HP ,"Eisenbarth, Christopher A",Asso,64290
+EDUC,HP&HP ,"Griffith, Cass Abigail",Asst,57061
+EDUC,HP&HP ,"Hanaki, Saori",Asst,56558
+EDUC,HP&HP ,"Huang, Yan",Asst,56558
+EDUC,HP&HP ,"Hunter, Heather",Instr,45900
+EDUC,HP&HP ,"King, Mandy",Asst,56000
+EDUC,HP&HP ,"Lewis, Terence Grant",Asst,56244
+EDUC,HP&HP ,"Olpin, Michael N",Prof,73945
+EDUC,HP&HP ,"Smith, Chad E",Asso,62112
+EDUC,HP&HP ,"Zagrodnik, James A",Asso,62738
+EDUC,HP&HP ,"Zimmerman, Ryan",Asst,56640
+EDUC,CH&FAM,"Adams, Mark S",Asst,56766
+EDUC,CH&FAM,"Anderson, Sheila",Asst,57223
+EDUC,CH&FAM,"Dunn, Charles",Asst,56558
+EDUC,CH&FAM,"Henke, Teresa Marie",Asst,56509
+EDUC,CH&FAM,"Hubler, Daniel Spencer",Asso,62284
+EDUC,CH&FAM,"Merrill, Chloe D",Prof,96108
+EDUC,CH&FAM,"Osai, Keith",Asst,56000
+EDUC,CH&FAM,"Ota, Carrie L",Asso,61809
+EDUC,CH&FAM,"Qiu, Wei",Asso,62830
+EDUC,CH&FAM,"Schvaneveldt, Paul L",Prof,80351
+EDUC,AT&N,"Aguilar-Alvarez, David",Asst,60964
+EDUC,AT&N,"Cohen, Alysia",Asst,56000
+EDUC,AT&N,"Donahue, Matthew Shawn",Asso,62426
+EDUC,AT&N,"Gabler, Conrad Matthew",Asst,56640
+EDUC,AT&N,"Hansen, Rodney A",Prof,74643
+EDUC,AT&N,"Herzog, Valerie W",Prof,77719
+EDUC,AT&N,"Joyner, Damon ",Asst,56000
+EDUC,AT&N,"Stedge, Hannah Lynette",Instr,48245
+EDUC,AT&N,"Turley, Jennifer M",Prof,83957
+HP,RESP THER,"Eberle, Paul",Prof,83903
+HP,RESP THER,"Gardiner, Janelle",Asso,63801
+HP,RESP THER,"Oki, Michell D",Asso,62606
+HP,RESP THER,"Vasas, Sherri",Instr,41200
+HP,RAD SCI,"Christensen, Rex T",Asso,65407
+HP,RAD SCI,"Clampitt, Victor S",Asst,56405
+HP,RAD SCI,"Coburn, Laurie",Asst,56393
+HP,RAD SCI,"Ferguson, Robert",Instr,55279
+HP,RAD SCI,"Kawamura, Diane M",Prof,91442
+HP,RAD SCI,"Neville, Casey W",Asst,59125
+HP,RAD SCI,"Nolan, Tanya D",Asso,65607
+HP,RAD SCI,"Parkinson, Kimberly",Instr,55279
+HP,RAD SCI,"Walker, Robert J",Prof,93415
+HP,RAD SCI,"Ward, Taylor",Asst,55286
+HP,NURSING,"Allen, Juanita",Instr,61800
+HP,NURSING,"Anderson, Pamela McCann",Asst,57767
+HP,NURSING,"Ardern, Rachel",Asst,59740
+HP,NURSING,"Ballingham, Suzanne Hyde",Instr,57308
+HP,NURSING,"Baron, Kristy A",Asso,66297
+HP,NURSING,"Barra, Joyce Marie",Instr,71557
+HP,NURSING,"Berghout, Tamara P",Asst,57767
+HP,NURSING,"Beynon, Cynthia",Asst,55675
+HP,NURSING,"Bottelberghe, Monica",Asst,56838
+HP,NURSING,"Bryson, Jaylynn",Asst,56795
+HP,NURSING,"Burchell, Julie",Instr,58000
+HP,NURSING,"Cadman, Kathleen E",Asst,57767
+HP,NURSING,"Cantwell, Sally A",Asso,66891
+HP,NURSING,"Chalmers, Kaylene",Instr,56562
+HP,NURSING,"Clark, Heather Jamye",Asst,59878
+HP,NURSING,"Dahlkemper, Tamara R",Asso,71668
+HP,NURSING,"Draper, London",Prof,81306
+HP,NURSING,"Fife, Diane K Leggett",Asso,69376
+HP,NURSING,"Gee, Julie Peila",Asst,59601
+HP,NURSING,"Gooder, Valerie",Prof,87967
+HP,NURSING,"Gunnell, Megan",Instr,55350
+HP,NURSING,"Hale-Stegen, Amy Jennifer",Asst,60983
+HP,NURSING,"Hansen, Vicky",Instr,58653
+HP,NURSING,"Hanson, Alexandra Dani",Asso,64364
+HP,NURSING,"Harmston, Catherine",Asst,63038
+HP,NURSING,"Harris, Jeanette Reaveley",Asso,65647
+HP,NURSING,"Heugly, Susan",Instr,55489
+HP,NURSING,"Holman, Rieneke",Asso,66285
+HP,NURSING,"Jeffrey, Carrie",Asst,55350
+HP,NURSING,"Johnson, Benjamin A",Instr,55405
+HP,NURSING,"Johnson, Kimball Forrest",Instr,61397
+HP,NURSING,"Judd, Deborah M",Prof,78387
+HP,NURSING,"Kelly, Jonny",Asst,62129
+HP,NURSING,"Merrill, Constance L",Instr,56732
+HP,NURSING,"Neville, Melissa Ann",Asso,79154
+HP,NURSING,"Openshaw, Deon",Instr,58425
+HP,NURSING,"Page, Angela",Instr,59450
+HP,NURSING,"Phillips, Terry",Instr,58000
+HP,NURSING,"Quayle, Tressa S",Asst,56838
+HP,NURSING,"Reese, Jody",Instr,58806
+HP,NURSING,"Reynolds, Mary Anne",Asso,66625
+HP,NURSING,"Rhodes, Julie M",Instr,56838
+HP,NURSING,"Roberts, Monte L",Asst,63238
+HP,NURSING,"Rocha, Elizabeth D",Asst,60935
+HP,NURSING,"Salmond, Louise S",Instr,58117
+HP,NURSING,"Small, Trisha",Instr,55000
+HP,NURSING,"Sowerby, Holli",Asst,58828
+HP,NURSING,"Summers, Marlene",Instr,58000
+HP,NURSING,"Thornock, Susan B",Prof,85030
+HP,NURSING,"Wankier, Jamie",Asst,58343
+HP,NURSING,"Weston, Nancy",Instr,55350
+HP,NURSING,"Williams, Kristiann T",Asso,70878
+HP,MLS,"Beazer, Steven Kendal",Asst,54631
+HP,MLS,"Cummins, Kenton James Edwin",Asst,52530
+HP,MLS,"Moore, Michael",Asst,63860
+HP,MLS,"Nicholaou, Matthew James",Asso,75193
+HP,MLS,"Rhees, Justin",Asst,55000
+HP,MLS,"Thomas, Janice",Asso,60203
+HP,HLTH SCI,"Chugg, Kraig E",Asst,68782
+HP,HLTH SCI,"Hutchins, James B",Prof,101505
+HP,HLTH SCI,"Newton, Kathryn T",Asso,77167
+HP,HLTH SCI,"Orrock, Marvin W",Asst,64297
+HP,HLTH SCI,"Price, Travis Miles",Asso,74683
+HP,HLTH SCI,"Winterton, Brad S",Asst,63036
+HP,HLTH ADM SRV,"Carter, Darcy",Asst,65766
+HP,HLTH ADM SRV,"Cottle, Brian",Instr,69317
+HP,HLTH ADM SRV,"Garr, Lindsay Brooke",Instr,58176
+HP,HLTH ADM SRV,"Johnson, Kenneth L",Prof,104286
+HP,HLTH ADM SRV,"Merkley, Heather Louise",Asst,62026
+HP,HLTH ADM SRV,"Millner, F Ann",Prof,120729
+HP,HLTH ADM SRV,"Moss, Cory W",Asst,79759
+HP,HLTH ADM SRV,"Palmer, Miland N",Instr,63696
+HP,HLTH ADM SRV,"Shaw, Patricia L",Prof,93173
+HP,HLTH ADM SRV,"Wiggins, Carla Ann",Prof,95889
+HP,EMER C/R,"Long, Andrea",Instr,55000
+HP,EMER C/R,"O'Neil, Christine",Instr,56650
+HP,EMER C/R,"Robertson, William E",Asst,60839
+HP,DENT HYG,"Alexander, Susan K",Asso,64239
+HP,DENT HYG,"Bossenberger, Stephanie",Prof,74553
+HP,DENT HYG,"Costley, Shelly M",Asso,59316
+HP,DENT HYG,"Hopkin, Joe",Asst,92980
+HP,DENT HYG,"McConaughy, Frances L",Prof,77525
+HP,DENT HYG,"Perry, Jeffrey Shane",Asso,58563
+LIB,LIBR INSTR,"Adamson, Shaun Rae",Prof,71457
+LIB,LIBR INSTR,"Beatty, Nicole Ann",Asst,48458
+LIB,LIBR INSTR,"Francis, Jason J",Asst,48458
+LIB,LIBR INSTR,"Hahn, Edward John",Asso,53064
+LIB,LIBR INSTR,"Hauser, Christopher D",Asst,71342
+LIB,LIBR INSTR,"Hernandez, Ernesto",Asst,46615
+LIB,LIBR INSTR,"Kispert, Miranda",Asst,44983
+LIB,LIBR INSTR,"Kotter, Wade R",Prof,75254
+LIB,LIBR INSTR,"Singh, Sarah",Asst,47541
+LIB,LIBR INSTR,"Weeks, Jamie",Asst,46721
+S&BS,SOCLGY/ANTHRO,"Arkush, Brooke S",Prof,91991
+S&BS,SOCLGY/ANTHRO,"Gautney, Joanna",Asst,55500
+S&BS,SOCLGY/ANTHRO,"Glass, Henry George",Asso,60959
+S&BS,SOCLGY/ANTHRO,"Hill, Huiying Wei",Prof,84161
+S&BS,SOCLGY/ANTHRO,"Holt, Ronald L",Prof,89687
+S&BS,SOCLGY/ANTHRO,"Morris, Robert",Asst,56155
+S&BS,SOCLGY/ANTHRO,"Ollilainen, Anne Marjukka",Prof,77521
+S&BS,SOCLGY/ANTHRO,"Reynolds, Robert W",Asso,66084
+S&BS,SOCLGY/ANTHRO,"Stevenson, Mark",Asst,55748
+S&BS,SOCLGY/ANTHRO,"Trentelman, Carla K",Asso,62975
+S&BS,SOCLGY/ANTHRO,"Yoder, David",Asst,55645
+S&BS,SOCIAL WK,"Bigler, Mark O",Prof,78798
+S&BS,SOCIAL WK,"Bonella, Barrett Albert Troy",Asst,57790
+S&BS,SOCIAL WK,"Kennedy-Pressey, Kerry S",Prof,73945
+S&BS,SOCIAL WK,"Moleni, Kristina",Instr,44396
+S&BS,SOCIAL WK,"Tadehara, Corina D",Asso,65380
+S&BS,SOCIAL WK,"Vigil, Steven C",Asst,47826
+S&BS,PSYCH,"Ashley, Aaron L",Prof,75510
+S&BS,PSYCH,"Baird, Todd C",Asso,65501
+S&BS,PSYCH,"Garza, Azenett A",Prof,76918
+S&BS,PSYCH,"Herrmann, Sarah",Asst,55080
+S&BS,PSYCH,"Hillhouse, Todd",Asst,55661
+S&BS,PSYCH,"Horvat, Joseph",Prof,91876
+S&BS,PSYCH,"Kay, Theresa S",Asso,61225
+S&BS,PSYCH,"Mansfield, Cade",Asst,55080
+S&BS,PSYCH,"McGillivray, Shannon Elizabeth",Asso,59481
+S&BS,PSYCH,"Russell-Stamp, Melinda",Asst,47306
+S&BS,PSYCH,"Shaw, Leigh A",Prof,78496
+S&BS,POL SCI,"Johnson, Gary Alan",Prof,72911
+S&BS,POL SCI,"Kuehls, Thomas C",Prof,87046
+S&BS,POL SCI,"Murray, Leah A",Prof,75155
+S&BS,POL SCI,"Price, Richard Shawn",Asso,62743
+S&BS,POL SCI,"Stramer-Smith, Janicke",Asst,55500
+S&BS,POL SCI,"Wolfe, Stephanie Ann",Asso,61127
+S&BS,PHILOS,"Fudge, Robert S",Prof,72070
+S&BS,PHILOS,"Greene, Richard V",Prof,76862
+S&BS,PHILOS,"Willard, Mary Elizabeth",Asso,60924
+S&BS,PHILOS,"Williams, Valerie",Asst,55000
+S&BS,HISTORY,"Brower, Matthew Brady",Asso,62904
+S&BS,HISTORY,"Dant, Sara Elizabeth",Prof,76829
+S&BS,HISTORY,"Deakin, Vikki Jan",Prof,71514
+S&BS,HISTORY,"Francis, Stephen S",Asso,62092
+S&BS,HISTORY,"Lewis, Gregory S",Prof,75676
+S&BS,HISTORY,"Little, Branden",Asso,63431
+S&BS,HISTORY,"MacKay, Kathryn L",Prof,82007
+S&BS,HISTORY,"Matt, Susan J",Prof,81422
+S&BS,HISTORY,"Richey, Jeffrey W",Asst,55023
+S&BS,HISTORY,"Romaniello, Matthew",Asst,58000
+S&BS,HISTORY,"Sessions, Gene A",Prof,103633
+S&BS,HISTORY,"Swedin, Eric Gottfrid",Prof,97192
+S&BS,GEOGRAPHY,"Bedford, Daniel P",Prof,79493
+S&BS,GEOGRAPHY,"Bryson, Jeremy Glen",Asso,63363
+S&BS,GEOGRAPHY,"Dorsey, Bryan S",Prof,79830
+S&BS,GEOGRAPHY,"Ewert, Eric C",Prof,73200
+S&BS,GEOGRAPHY,"Mulder, Alice E",Asso,64072
+S&BS,GEOGRAPHY,"Rich, Julie",Prof,77515
+S&BS,CRIM JST,"Bayley, Bruce K",Prof,79990
+S&BS,CRIM JST,"Dean, Russell",Asst,55234
+S&BS,CRIM JST,"Denniston, Mark W",Asst,57800
+S&BS,CRIM JST,"Horn, Brent Allen",Asso,66942
+S&BS,CRIM JST,"Kapenda, Jean K",Instr,45136
+S&BS,CRIM JST,"Lee, Heeuk ""Dennis""",Asst,56809
+S&BS,CRIM JST,"Lynch, David R",Prof,84203
+S&BS,CRIM JST,"Namba, Brian Jin",Instr,46879
+S&BS,CRIM JST,"Reyns, Bradford W",Asso,66692
+S&BS,CRIM JST,"Senjo, Scott R",Prof,73771
+S&BS,CRIM JST,"Sween, Molly Catherine",Asso,64484
+S&BS,CRIM JST,"Williams, Monica Jeanne",Asst,58355
+SCI,ZOOLOGY,"Berthelemy, Nicole Jeanne",Prof,75311
+SCI,ZOOLOGY,"Brasso, Rebecka",Asst,61000
+SCI,ZOOLOGY,"Cavitt, John F",Prof,84088
+SCI,ZOOLOGY,"Chung, Brian Michael",Prof,74158
+SCI,ZOOLOGY,"Clark, Jonathan B",Prof,86501
+SCI,ZOOLOGY,"Hoagstrom, Christopher",Prof,75668
+SCI,ZOOLOGY,"Marshall, Jon C",Prof,74142
+SCI,ZOOLOGY,"Meyers, Ronald A",Prof,87235
+SCI,ZOOLOGY,"Mull, John F",Prof,83031
+SCI,ZOOLOGY,"Pilcher, Brian",Instr,44000
+SCI,ZOOLOGY,"Sandquist, Elizabeth",Asst,63000
+SCI,ZOOLOGY,"Skopec, Michele M",Prof,75583
+SCI,ZOOLOGY,"Trask, Barbara Crippes",Prof,76397
+SCI,PHYSICS,"Armstrong, John C",Prof,79787
+SCI,PHYSICS,"Arnold, Michelle L",Asso,70221
+SCI,PHYSICS,"Inglefield, Colin E",Prof,87840
+SCI,PHYSICS,"Johnston, Adam T",Prof,88831
+SCI,PHYSICS,"Palen, Stacy Elizabeth",Prof,87705
+SCI,PHYSICS,"Rabosky, Kristin G",Asst,65305
+SCI,PHYSICS,"Schroeder, Daniel Vernon",Prof,88460
+SCI,PHYSICS,"Sohl, John E",Prof,98244
+SCI,PHYSICS,"Spjeldvik, Walther N",Prof,84457
+SCI,MICRO,"Clark, Daniel",Asst,62500
+SCI,MICRO,"Crook, Matthew",Asst,64827
+SCI,MICRO,"Culumber, Michele D",Prof,78317
+SCI,MICRO,"Domek, Matthew Joseph",Prof,78049
+SCI,MICRO,"Lorowitz, William H",Prof,74916
+SCI,MICRO,"Nakaoka, Karen G",Prof,82752
+SCI,MICRO,"Oberg, Craig J",Prof,102155
+SCI,MICRO,"Sondossi, Mohammad",Prof,90151
+SCI,MATH,"Acor, Brenda",Instr,45583
+SCI,MATH,"Akelbek, Mahmud",Asso,66126
+SCI,MATH,"Bachman, Rachel Marie",Asst,65446
+SCI,MATH,"Baker, Loyal",Instr,45150
+SCI,MATH,"Broderick, Shawn",Asst,64087
+SCI,MATH,"Cai, Maomao",Asso,64613
+SCI,MATH,"Chan, Julian David",Asso,65623
+SCI,MATH,"Cocos, Mihail",Asso,63451
+SCI,MATH,"Dixon, Shannon",Instr,40500
+SCI,MATH,"Dunn, Christopher Westwood",Instr,41773
+SCI,MATH,"Fital-Akelbek, Sandra",Asso,65628
+SCI,MATH,"Ghoreishi, Afshin",Prof,85050
+SCI,MATH,"Hansen, Amber",Instr,40596
+SCI,MATH,"Imig, David C",Instr,46718
+SCI,MATH,"Jennings-Lewis, Cristine L",Instr,42911
+SCI,MATH,"Jones, Charity Anne",Instr,42911
+SCI,MATH,"Kidman, Kent O",Prof,91598
+SCI,MATH,"Kvernadze, George",Prof,85978
+SCI,MATH,"McKee, Deborah Kinsella",Instr,45625
+SCI,MATH,"Neal, Cora",Asst,67446
+SCI,MATH,"Ondrus, Matthew James",Prof,76226
+SCI,MATH,"Penrod, Janette P",Instr,42724
+SCI,MATH,"Peters, James E",Asso,66260
+SCI,MATH,"Poore, Darrell",Instr,45316
+SCI,MATH,"Quesnell, Carrie F",Instr,46215
+SCI,MATH,"Steele, Timothy H",Prof,90269
+SCI,MATH,"Symonds, Kassidy",Instr,39800
+SCI,MATH,"Talaga, Paul C",Prof,91478
+SCI,MATH,"Walters, C. David",Asst,61740
+SCI,MATH,"Yonkee, Mary Ellen",Instr,45625
+SCI,GEOSCIENCES,"Balgord, Elizabeth A",Asst,64515
+SCI,GEOSCIENCES,"Ford, Richard Lee",Prof,87852
+SCI,GEOSCIENCES,"Frantz, Carie Marie",Asst,65074
+SCI,GEOSCIENCES,"Hernandez, Michael W",Prof,80944
+SCI,GEOSCIENCES,"Matyjasik, Marek",Prof,86863
+SCI,GEOSCIENCES,"Yonkee, W Adolph",Prof,95591
+SCI,CHEMISTRY,"Berghout, Henry Laine",Prof,86593
+SCI,CHEMISTRY,"Burnett, Brandon Jay",Asst,63250
+SCI,CHEMISTRY,"Campbell, Carol Jean",Instr,52415
+SCI,CHEMISTRY,"Covey, Tracy Marie",Asst,64709
+SCI,CHEMISTRY,"Davidson, Charles F",Prof,86067
+SCI,CHEMISTRY,"Davies, Don R",Prof,75897
+SCI,CHEMISTRY,"Herzog, Timothy A",Asso,66599
+SCI,CHEMISTRY,"Jenkins, Brooke",Instr,42000
+SCI,CHEMISTRY,"Johnson, Todd M",Prof,79629
+SCI,CHEMISTRY,"Lippert, J Andreas",Prof,81179
+SCI,CHEMISTRY,"Lloyd, Barry A",Prof,94663
+SCI,CHEMISTRY,"Paustenbaugh, Michelle Birke",Prof,80325
+SCI,CHEMISTRY,"Walker, Edward B",Prof,102031
+SCI,BOTANY,"Clark, Stephen L",Prof,95608
+SCI,BOTANY,"Harley, Suzanne M",Prof,90574
+SCI,BOTANY,"Hilbig, Bridget E",Asst,65142
+SCI,BOTANY,"Root, Heather T",Asst,63612
+SCI,BOTANY,"Schramm, Katharina",Asst,62093
+SCI,BOTANY,"Wachocki, Barbara A",Prof,86485
