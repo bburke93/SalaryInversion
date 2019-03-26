@@ -10,12 +10,12 @@ namespace SalaryInversion
     class Process
     {
         /// <summary>
-        /// Contains all inverted employees, after calling GetEmployees
+        /// Contains all employees, after calling GetEmployees
         /// </summary>
         private List<Employee> employees = new List<Employee>();
 
         /// <summary>
-        /// Loads the list of inverted employees from csv file
+        /// Loads the list of employees from csv file
         /// </summary>
         public List<Employee> GetEmployees()
         {
