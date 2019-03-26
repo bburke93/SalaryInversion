@@ -9,17 +9,27 @@ namespace SalaryInversion
 {
     class Process
     {
-        /// <summary>
-        /// Contains all employees, after calling GetEmployees
-        /// </summary>
-        private List<Employee> employees = new List<Employee>();
 
         /// <summary>
-        /// Loads the list of employees from csv file
+        /// Get's a list containing all employees from the sample databse. Used for demonstration only.
         /// </summary>
+        /// <returns>A list of Employee objects</returns>
         public List<Employee> GetEmployees()
         {
-            var input = File.ReadAllLines("../../Data/2019eqmodelabbreviated.csv");
+            return GetEmployees("../../Data/2019eqmodelabbreviated.csv");
+        }
+
+        /// <summary>
+        /// Get's a list containg all employees.
+        /// </summary>
+        /// <param name="filePath">Filepath to a CSV containing all employees.</param>
+        /// <returns>A list of Employee objects.</returns>
+        public List<Employee> GetEmployees(string filePath)
+        {
+            List<Employee> employees = new List<Employee>();
+            var input = File.ReadAllLines(filePath);
+
+            // Get lines from input file and generate employee objects
             foreach (string line in input)
             {
                 var values = line.Split(',');
