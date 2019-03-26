@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>SalaryInversion.Process</StartupObject>
+    <StartupObject>SalaryInversion.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

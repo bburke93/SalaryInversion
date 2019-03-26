@@ -12,12 +12,12 @@ namespace SalaryInversion
         /// <summary>
         /// Contains all inverted employees, after calling GetEmployees
         /// </summary>
-        private static List<Employee> employees = new List<Employee>();
+        private List<Employee> employees = new List<Employee>();
 
         /// <summary>
         /// Loads the list of inverted employees from csv file
         /// </summary>
-        private static void GetEmployees()
+        public List<Employee> GetEmployees()
         {
             var input = File.ReadAllLines("../../Data/2019eqmodelabbreviated.csv");
             foreach (string line in input)
@@ -39,13 +39,15 @@ namespace SalaryInversion
 
                 employees.Add(new Employee(college, department, name, rank, salary));
             }
+            return employees;
         }
 
-        public static void Main()
-        {
-            GetEmployees();
-            Console.WriteLine("Yeah, I'm right here.");
-            Console.Read();
-        }
+        // Used for testing
+        //public static void Main()
+        //{
+        //    GetEmployees();
+        //    Console.WriteLine("Yeah, I'm right here.");
+        //    Console.Read();
+        //}
     }
 }

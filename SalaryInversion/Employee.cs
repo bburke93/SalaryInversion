@@ -8,11 +8,11 @@ namespace SalaryInversion
 {
     class Employee
     {
-        private string College { get; set; }
-        private string Department { get; set; }
-        private string Name { get; set; }
-        private string Rank { get; set; }
-        private int Salary { get; set; }
+        public string College { get; set; }
+        public string Department { get; set; }
+        public string Name { get; set; }
+        public string Rank { get; set; }
+        public int Salary { get; set; }
 
         public Employee(string college, string department, string name, string rank, int salary)
         {
