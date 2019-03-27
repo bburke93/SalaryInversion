@@ -58,7 +58,7 @@ namespace SalaryInversion
         public DataGrid create_datagrid()
         {
             initial_datagrid = DataGrid()
-            initial_datagrid.ItemSource(GetEmployees)
+            initial_datagrid.ItemSource(GetEmployees())
         }
         
         // Used for testing
