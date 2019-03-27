@@ -51,15 +51,7 @@ namespace SalaryInversion
             }
             return employees;
         }
-
-        /// <summary>
-        /// creates a DataGrid and set the ItemSource to the the function GetEmployees
-        /// </summary>
-        public DataGrid create_datagrid()
-        {
-            initial_datagrid = DataGrid()
-            initial_datagrid.ItemSource(GetEmployees())
-        }
+        
         
         // Used for testing
         //public static void Main()
