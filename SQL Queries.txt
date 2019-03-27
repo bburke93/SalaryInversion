@@ -85,3 +85,46 @@ GROUP BY DEPT, RNK) AS t2
 ON t1.DEPT = t2.DEPT
 WHERE t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.maxInstrSal
 GROUP BY t1.DEPT;
+
+
+--NEW WAY TO GET TOTAL COUNT
+
+SELECT DEPT, COUNT(*) AS Total
+FROM 
+	(SELECT DEPT, NAME, MIN(invRankNum) AS MinInvRank
+	FROM 
+		(SELECT *
+		FROM 
+			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK, Switch( MAIN.RNK='Prof', 4,
+																MAIN.RNK='Asso', 3,
+																MAIN.RNK='Asst', 2,
+																MAIN.RNK='Instr', 1,
+																true, 0) AS RankNum,
+			[9MSALARY], maxTable.RNK, Switch( maxTable.RNK='Prof', 4,
+											  maxTable.RNK='Asso', 3,
+											  maxTable.RNK='Asst', 2,
+											  maxTable.RNK='Instr', 1,
+										      true, 0) AS InvRankNum,
+			maxRankSal
+			FROM MAIN
+			INNER JOIN
+				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal
+				FROM MAIN
+				WHERE RNK = 'Instr'
+				GROUP BY DEPT, RNK
+				UNION
+				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal
+				FROM MAIN
+				WHERE RNK = 'Asso'
+				GROUP BY DEPT, RNK
+				UNION
+				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal
+				FROM MAIN
+				WHERE RNK = 'Asst'
+				GROUP BY DEPT, RNK) AS maxTable
+			ON MAIN.DEPT = maxTable.DEPT
+			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal
+			ORDER BY MAIN.DEPT, MAIN.NAME)
+	WHERE RankNum > InvRankNum)
+	GROUP BY DEPT, NAME)
+GROUP BY DEPT;
