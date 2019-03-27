@@ -20,9 +20,15 @@ namespace SalaryInversion
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Process dataProcessor;
+        private List<Employee> employees = new List<Employee>();
+
         public MainWindow()
         {
             InitializeComponent();
+            dataProcessor = new Process();
+            employees = dataProcessor.GetEmployees();
+            DisplayGrid.ItemsSource = employees;
         }
     }
 }
