@@ -51,13 +51,5 @@ namespace SalaryInversion
             }
             return employees;
         }
-
-        // Used for testing
-        //public static void Main()
-        //{
-        //    GetEmployees();
-        //    Console.WriteLine("Yeah, I'm right here.");
-        //    Console.Read();
-        //}
     }
 }
