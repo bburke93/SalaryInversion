@@ -35,17 +35,17 @@
         <!--MAIN MENU-->
         <Border BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black">
             <StackPanel Background="#1E232D" Orientation="Horizontal" >
-                <Button x:Name="btnOpen" Content="Open File" Background="{x:Null}" BorderBrush="Black" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="16" Height="50" Width="100" Margin="100,0,0,0" BorderThickness="1,0" Click="BtnMMOpen_Click"/>
-                <Button x:Name="btnMMGenerate" Content="Generate" Background="{x:Null}" BorderBrush="Black" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="16" Height="50" Width="100" FontWeight="Bold" BorderThickness="0,0,1,0" Click="BtnMMGenerate_Click" IsEnabled="False"/>
+                <Button x:Name="btnOpen" Content="Open File" BorderBrush="Black" Height="50" Width="100" Margin="100,0,0,0" BorderThickness="1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMOpen_Click"/>
+                <Button x:Name="btnMMGenerate" Content="Generate" BorderBrush="Black" Height="50" Width="100" FontWeight="Bold" BorderThickness="0,0,1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMGenerate_Click" IsEnabled="False"/>
             </StackPanel>
         </Border>
 
         <!--SIDE MENU-->
         <StackPanel Background="#292E3B" Grid.Row="2">
-            <Button x:Name="btnReport1" Content="Report 1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport1_Click"/>
-            <Button x:Name="btnReport2" Content="Report 2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport2_Click"/>
-            <Button x:Name="btnReport3" Content="Report 3" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport3_Click"/>
-            <Button x:Name="btnReport4" Content="Report 4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport4_Click"/>
+            <Button x:Name="btnReport1" Content="Report 1" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport1_Click"/>
+            <Button x:Name="btnReport2" Content="Report 2" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport2_Click"/>
+            <Button x:Name="btnReport3" Content="Report 3" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport3_Click"/>
+            <Button x:Name="btnReport4" Content="Report 4" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport4_Click"/>
         </StackPanel>
 
 

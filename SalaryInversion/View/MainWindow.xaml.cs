@@ -180,11 +180,15 @@ namespace SalaryInversion
             // Get the selected file name and display in a TextBox 
             if (result.HasValue && result.Value)
             {
-                btnWSGenerate.IsEnabled = true;
-                btnMMGenerate.IsEnabled = true;
                 // Open document 
                 sFilename = dlg.FileName;
                 lFileName.Content = sFilename;
+
+                dgReport.Visibility = Visibility.Hidden;
+                spFileSelect.Visibility = Visibility.Visible;
+                btnWSGenerate.IsEnabled = true;
+                btnMMGenerate.IsEnabled = true;
+                miSaveAs.IsEnabled = false;
             }
         }
         
@@ -205,6 +209,8 @@ namespace SalaryInversion
 
             //I will databind the datagrid to the dataview property
             miSaveAs.IsEnabled = true;
+            btnMMGenerate.IsEnabled = false;
+            btnWSGenerate.IsEnabled = false;
         }
 
         /// <summary>

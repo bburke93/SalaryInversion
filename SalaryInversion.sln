@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryInversion", "SalaryInversion\SalaryInversion.csproj", "{BB36302A-B807-4F9C-8EFF-E2E9150FBAF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryInversion.Windows.Theme", "WPFTheme.Windows.Theme\SalaryInversion.Windows.Theme.csproj", "{CA0EBD9C-9A50-4FE4-9202-3401E3B17B1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BB36302A-B807-4F9C-8EFF-E2E9150FBAF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB36302A-B807-4F9C-8EFF-E2E9150FBAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB36302A-B807-4F9C-8EFF-E2E9150FBAF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA0EBD9C-9A50-4FE4-9202-3401E3B17B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA0EBD9C-9A50-4FE4-9202-3401E3B17B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA0EBD9C-9A50-4FE4-9202-3401E3B17B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA0EBD9C-9A50-4FE4-9202-3401E3B17B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
