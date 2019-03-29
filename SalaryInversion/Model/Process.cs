@@ -4,12 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data;
 
 namespace SalaryInversion
 {
     class Process
     {
+        private DataAccess db;
+        private SQLQueries query;
 
+        public Process(string filePath)
+        {
+            db = new DataAccess(filePath);
+            query = new SQLQueries();
+        }
+
+        public DataSet Report1()
+        {
+            return null;
+        }
+
+        public DataSet Report2()
+        {
+            return null;
+        }
+
+        public DataSet Report3()
+        {
+            return null;
+        }
+
+        public DataSet Report4()
+        {
+            return null;
+        }
+
+        #region Deprecated Code For Employee objects/CSV
         /// <summary>
         /// Get's a list containing all employees from the sample databse. Used for demonstration only.
         /// </summary>
@@ -51,5 +81,6 @@ namespace SalaryInversion
             }
             return employees;
         }
+        #endregion
     }
 }

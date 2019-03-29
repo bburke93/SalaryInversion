@@ -21,13 +21,6 @@ namespace SalaryInversion
         string sFilename;
         private Process dataProcessor;
         private List<Employee> employees = new List<Employee>();
-
-
-        //THIS DATA ACCESS CLASS SHOULD BELONG TO A DRIVER CLASS FOR CREATING THE REPORTS
-        //I have it here for now.
-        DataAccess db;
-
-
         #endregion
 
 
@@ -35,10 +28,8 @@ namespace SalaryInversion
         public MainWindow()
         {
             InitializeComponent();
-            dataProcessor = new Process();
-            employees = dataProcessor.GetEmployees();
-            //DisplayGrid.ItemsSource = employees;
         }
+
         /// <summary>
         /// Selects an Access DB file (TaskBar)
         /// </summary>
@@ -202,9 +193,7 @@ namespace SalaryInversion
         /// </summary>
         void GenerateReport()
         {
-            //FOR NOW THE DB IS DECLARED RIGHT HERE
-            //THE DB SHOULD EXIST IN THE DRIVER CLASS FOR GENERATING THE REPORTS
-            db = new DataAccess(sFilename);
+            dataProcessor = new Process(sFilename);
 
             //Hide the SelectFile panel
             spFileSelect.Visibility = Visibility.Hidden;
