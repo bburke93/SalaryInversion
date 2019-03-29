@@ -7,37 +7,38 @@ using System.Reflection;
     /// <summary>
     /// Class used to access the database.
     /// </summary>
-	public class clsDataAccess
+	public class DataAccess
 	{
         /// <summary>
         /// Connection string to the database.
         /// </summary>
-        private string sConnectionString;
+        private string ConnectionString;
 
         /// <summary>
         /// Constructor that sets the connection string to the database
         /// </summary>
-		public clsDataAccess(string filePath)
+        /// <param name="filePath">The path to an access database file.</param>
+		public DataAccess(string filePath)
 		{
-            sConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= " + filePath;
+            ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= " + filePath;
 		}
 
         /// <summary>
         /// This method takes an SQL statment that is passed in and executes it.  The resulting values
         /// are returned in a DataSet.  The number of rows returned from the query will be put into
-        /// the reference parameter iRetVal.
+        /// the reference parameter RetVal.
         /// </summary>
-        /// <param name="sSQL">The SQL statement to be executed.</param>
-        /// <param name="iRetVal">Reference parameter that returns the number of selected rows.</param>
+        /// <param name="SQL">The SQL statement to be executed.</param>
+        /// <param name="RetVal">Reference parameter that returns the number of selected rows.</param>
         /// <returns>Returns a DataSet that contains the data from the SQL statement.</returns>
-		public DataSet ExecuteSQLStatement(string sSQL, ref int iRetVal)
+		public DataSet ExecuteSQLStatement(string SQL, ref int RetVal)
 		{
 			try
 			{
                 //Create a new DataSet
                 DataSet ds = new DataSet();
 
-                using (OleDbConnection conn = new OleDbConnection(sConnectionString))
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
                 {
                     using (OleDbDataAdapter adapter = new OleDbDataAdapter())
                     {
@@ -46,7 +47,7 @@ using System.Reflection;
                         conn.Open();
 
                         //Add the information for the SelectCommand using the SQL statement and the connection object
-                        adapter.SelectCommand = new OleDbCommand(sSQL, conn);
+                        adapter.SelectCommand = new OleDbCommand(SQL, conn);
                         adapter.SelectCommand.CommandTimeout = 0;
 
                         //Fill up the DataSet with data
@@ -55,7 +56,7 @@ using System.Reflection;
                 }
 
                 //Set the number of values returned
-                iRetVal = ds.Tables[0].Rows.Count;
+                RetVal = ds.Tables[0].Rows.Count;
 
                 //return the DataSet
                 return ds;
@@ -70,16 +71,16 @@ using System.Reflection;
         /// This method takes an SQL statment that is passed in and executes it.  The resulting single 
         /// value is returned.
         /// </summary>
-        /// <param name="sSQL">The SQL statement to be executed.</param>
+        /// <param name="SQL">The SQL statement to be executed.</param>
         /// <returns>Returns a string from the scalar SQL statement.</returns>
-		public string ExecuteScalarSQL(string sSQL)
+		public string ExecuteScalarSQL(string SQL)
 		{
 			try
 			{
                 //Holds the return value
                 object obj;
 
-                using (OleDbConnection conn = new OleDbConnection(sConnectionString))
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
                 {
                     using (OleDbDataAdapter adapter = new OleDbDataAdapter())
                     {
@@ -88,7 +89,7 @@ using System.Reflection;
                         conn.Open();
 
                         //Add the information for the SelectCommand using the SQL statement and the connection object
-                        adapter.SelectCommand = new OleDbCommand(sSQL, conn);
+                        adapter.SelectCommand = new OleDbCommand(SQL, conn);
                         adapter.SelectCommand.CommandTimeout = 0;
 
                         //Execute the scalar SQL statement
@@ -117,30 +118,30 @@ using System.Reflection;
 		/// <summary>
         /// This method takes an SQL statment that is a non query and executes it.
         /// </summary>
-        /// <param name="sSQL">The SQL statement to be executed.</param>
+        /// <param name="SQL">The SQL statement to be executed.</param>
         /// <returns>Returns the number of rows affected by the SQL statement.</returns>
-		public int ExecuteNonQuery(string sSQL)
+		public int ExecuteNonQuery(string SQL)
 		{
 			try
 			{
                 //Number of rows affected
-                int iNumRows;
+                int NumRows;
 
-                using (OleDbConnection conn = new OleDbConnection(sConnectionString))
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
                 {
                     //Open the connection to the database
                     conn.Open();
 
                     //Add the information for the SelectCommand using the SQL statement and the connection object
-                    OleDbCommand cmd = new OleDbCommand(sSQL, conn);
+                    OleDbCommand cmd = new OleDbCommand(SQL, conn);
                     cmd.CommandTimeout = 0;
 
                     //Execute the non query SQL statement
-                    iNumRows = cmd.ExecuteNonQuery();
+                    NumRows = cmd.ExecuteNonQuery();
                 }
 
                 //return the number of rows affected
-                return iNumRows;
+                return NumRows;
 			}
 			catch (Exception ex)
 			{
