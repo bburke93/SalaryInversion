@@ -1,27 +1,90 @@
-SELECT tb1.DEPT, tb1.NAME
+--Full Professor Compared to Instructor
+(SAME)
+
+SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS "Inversion $ Amount"
+FROM MAIN as t1
+INNER JOIN
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal
+FROM MAIN
+WHERE RNK = 'Instr'
+GROUP BY DEPT, RNK) AS t2
+ON t1.DEPT = t2.DEPT
+WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal
+
+--Full Professor to Asst
+
+SELECT tb1.DEPT, tb1.NAME, tb1.MaxAsstSal - tb1.salary AS "Inversion Amount"
 FROM
 
-(SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t2.maxAssoSal - t1.[9MSALARY] AS "Inversion $ Amount" 
+(SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary,  t2.maxAsstSal AS MaxAsstSal
+FROM MAIN as t1
+INNER JOIN
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal
+FROM MAIN
+WHERE RNK = 'Asst'
+GROUP BY DEPT, RNK) AS t2
+ON t1.DEPT = t2.DEPT
+WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1
+
+LEFT OUTER JOIN
+
+(SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS "Inversion $ Amount"
+FROM MAIN as t1
+INNER JOIN
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal
+FROM MAIN
+WHERE RNK = 'Instr'
+GROUP BY DEPT, RNK) AS t2
+ON t1.DEPT = t2.DEPT
+WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2
+
+ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME
+WHERE tb2.NAME IS NULL
+
+--Full Professor to Asso
+
+SELECT table1.DEPT, table1.NAME, table1.MaxAssoSal - table1.salary AS "Inversion Amount"
+FROM
+
+(SELECT t1.DEPT, t1.NAME, t2.maxAssoSal AS MaxAssoSal, t1.[9MSALARY] AS salary 
 FROM MAIN as t1 
 INNER JOIN 
 (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal 
 FROM MAIN 
 WHERE RNK = 'Asso' 
-GROUP BY DEPT, RNK) AS t2 
-ON t1.DEPT = t2.DEPT 
-WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAssoSal) AS tb1
+GROUP BY DEPT, RNK) AS t2
+ON t1.DEPT = t2.DEPT
+WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAssoSal) AS table1
 
 LEFT OUTER JOIN
 
-(SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t2.maxAsstSal - t1.[9MSALARY] AS "Inversion $ Amount"
-FROM MAIN as t1 
-INNER JOIN 
-(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal 
-FROM MAIN 
-WHERE RNK = 'Asst' 
-GROUP BY DEPT, RNK) AS t2 
-ON t1.DEPT = t2.DEPT 
-WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb2
+(SELECT tb1.DEPT, tb1.NAME, tb1.MaxAsstSal - tb1.salary AS "Inversion Amount"
+FROM
+
+(SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary,  t2.maxAsstSal AS MaxAsstSal
+FROM MAIN as t1
+INNER JOIN
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal
+FROM MAIN
+WHERE RNK = 'Asst'
+GROUP BY DEPT, RNK) AS t2
+ON t1.DEPT = t2.DEPT
+WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1
+
+LEFT OUTER JOIN
+
+(SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS "Inversion $ Amount"
+FROM MAIN as t1
+INNER JOIN
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal
+FROM MAIN
+WHERE RNK = 'Instr'
+GROUP BY DEPT, RNK) AS t2
+ON t1.DEPT = t2.DEPT
+WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2
 
 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME
-WHERE tb2.NAME IS NULL;
+WHERE tb2.NAME IS NULL) as table2
+
+ON table1.DEPT = table2.DEPT AND table1.NAME = table2.NAME
+WHERE table2.NAME IS NULL;
