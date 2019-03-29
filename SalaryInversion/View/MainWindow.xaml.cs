@@ -24,7 +24,7 @@ namespace SalaryInversion
 
         //THIS DATA ACCESS CLASS SHOULD BELONG TO A DRIVER CLASS FOR CREATING THE REPORTS
         //I have it here for now.
-        clsDataAccess db;
+        DataAccess db;
 
 
         #endregion
@@ -199,7 +199,7 @@ namespace SalaryInversion
         {
             //FOR NOW THE DB IS DECLARED RIGHT HERE
             //THE DB SHOULD EXIST IN THE DRIVER CLASS FOR GENERATING THE REPORTS
-            db = new clsDataAccess(sFilename);
+            db = new DataAccess(sFilename);
 
             //Hide the SelectFile panel
             spFileSelect.Visibility = Visibility.Hidden;
