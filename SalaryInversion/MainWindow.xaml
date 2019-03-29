@@ -63,7 +63,7 @@
         </StackPanel>
 
         <!--REPORTS-->
-        <DataGrid x:Name="dgReport" Grid.Column="1" Grid.Row="1" Visibility="Hidden" Grid.RowSpan="2"/>
+        <DataGrid x:Name="dgReport" Grid.Column="1" Grid.Row="2" Visibility="Hidden" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>
