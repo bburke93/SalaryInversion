@@ -24,9 +24,9 @@
             <Menu DockPanel.Dock="Top" VerticalAlignment="Center">
                 <MenuItem Header="_File">
                     <MenuItem x:Name="miOpen" Header="_Open" Click="MiOpen_Click"/>
-                    <MenuItem Header="_Save" />
+                    <MenuItem x:Name="miSaveAs" Header="_Save As" Click="MiSaveAs_Click" IsEnabled="False" />
                     <Separator />
-                    <MenuItem Header="_Exit" />
+                    <MenuItem x:Name="miExit" Header="_Exit" Click="MiExit_Click" />
                 </MenuItem>
             </Menu>
         </DockPanel>

@@ -1,18 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
+using System.Windows.Media;
 
 namespace SalaryInversion
 {
@@ -68,6 +60,27 @@ namespace SalaryInversion
         }
 
         /// <summary>
+        /// Saves the Current Report DataGrid (From Menubar)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "report"; // Default file name
+            dlg.DefaultExt = ".png"; // Default file extension
+            dlg.Filter = "Png Image (*.png)|*.png"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                SaveToPng(dgReport, dlg.FileName);
+            }
+        }
+
+        /// <summary>
         /// Generates The reports
         /// </summary>
         /// <param name="sender"></param>
@@ -85,6 +98,7 @@ namespace SalaryInversion
 
 
             //I will databind the datagrid to the dataview property
+            miSaveAs.IsEnabled = true;
         }
 
         /// <summary>
@@ -154,6 +168,41 @@ namespace SalaryInversion
                 lFileName.Content = sFilename;
             }
         }
+
+        /// <summary>
+        /// Saves the Report DataGrid to the filepath as a png
+        /// </summary>
+        /// <param name="visual"></param>
+        /// <param name="fileName"></param>
+        void SaveToPng(FrameworkElement visual, string fileName)
+        {
+            var encoder = new PngBitmapEncoder();
+            SaveUsingEncoder(visual, fileName, encoder);
+        }
+
+        /// <summary>
+        /// Saves a FrameWorkElement to  the filepath using the specified encoder
+        /// </summary>
+        /// <param name="visual"></param>
+        /// <param name="fileName"></param>
+        /// <param name="encoder"></param>
+        void SaveUsingEncoder(FrameworkElement visual, string fileName, BitmapEncoder encoder)
+        {
+            RenderTargetBitmap bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            bitmap.Render(visual);
+            BitmapFrame frame = BitmapFrame.Create(bitmap);
+            encoder.Frames.Add(frame);
+
+            using (var stream = File.Create(fileName))
+            {
+                encoder.Save(stream);
+            }
+        }
         #endregion
+
+        private void MiExit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
