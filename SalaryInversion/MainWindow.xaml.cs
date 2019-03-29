@@ -38,19 +38,8 @@ namespace SalaryInversion
             employees = dataProcessor.GetEmployees();
             //DisplayGrid.ItemsSource = employees;
         }
-
         /// <summary>
-        /// Selects an Access DB file (From SideMenu)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BSelectFile_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFile();
-        }
-
-        /// <summary>
-        /// Selects an Access DB file (From Menubar)
+        /// Selects an Access DB file (TaskBar)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -60,7 +49,7 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Saves the Current Report DataGrid (From Menubar)
+        /// Saves the Current Report DataGrid (TaskBar)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -81,24 +70,53 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Generates The reports
+        /// Exits out of the app (TaskBar)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnGenerateReports_Click(object sender, RoutedEventArgs e)
+        private void MiExit_Click(object sender, RoutedEventArgs e)
         {
-            //FOR NOW THE DB IS DECLARED RIGHT HERE
-            //THE DB SHOULD EXIST IN THE DRIVER CLASS FOR GENERATING THE REPORTS
-            db = new clsDataAccess(sFilename);
+            System.Windows.Application.Current.Shutdown();
+        }
 
-            //Hide the SelectFile panel
-            spFileSelect.Visibility = Visibility.Hidden;
-            //Show the DataGrid
-            dgReport.Visibility = Visibility.Visible;
+        /// <summary>
+        /// Opens the File (Main Menu)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnMMOpen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFile();
+        }
 
+        /// <summary>
+        /// Generates the Report (Main Menu)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnMMGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            GenerateReport();
+        }
 
-            //I will databind the datagrid to the dataview property
-            miSaveAs.IsEnabled = true;
+        /// <summary>
+        /// Selects an Access DB file (WorkSpace)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BSelectFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFile();
+        }
+
+        /// <summary>
+        /// Generates The reports (WorkSpace)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            GenerateReport();
         }
 
         /// <summary>
@@ -162,11 +180,31 @@ namespace SalaryInversion
             // Get the selected file name and display in a TextBox 
             if (result.HasValue && result.Value)
             {
-                btnGenerateReports.IsEnabled = true;
+                btnWSGenerate.IsEnabled = true;
+                btnMMGenerate.IsEnabled = true;
                 // Open document 
                 sFilename = dlg.FileName;
                 lFileName.Content = sFilename;
             }
+        }
+        
+        /// <summary>
+        /// Generates the report From the Selected File
+        /// </summary>
+        void GenerateReport()
+        {
+            //FOR NOW THE DB IS DECLARED RIGHT HERE
+            //THE DB SHOULD EXIST IN THE DRIVER CLASS FOR GENERATING THE REPORTS
+            db = new clsDataAccess(sFilename);
+
+            //Hide the SelectFile panel
+            spFileSelect.Visibility = Visibility.Hidden;
+            //Show the DataGrid
+            dgReport.Visibility = Visibility.Visible;
+
+
+            //I will databind the datagrid to the dataview property
+            miSaveAs.IsEnabled = true;
         }
 
         /// <summary>
@@ -199,10 +237,5 @@ namespace SalaryInversion
             }
         }
         #endregion
-
-        private void MiExit_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
     }
 }

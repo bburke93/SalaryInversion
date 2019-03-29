@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalaryInversion"
         mc:Ignorable="d"
-        Title="Salary Inversion" Height="446.4" Width="798.2">
+        Title="Salary Inversion" Height="720" Width="1280">
 
     <!-- GRID -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="18"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,30 +20,37 @@
         </Grid.ColumnDefinitions>
 
 
-        <!--MAIN MENU-->
+        <!--Task Bar-->
         <DockPanel Grid.ColumnSpan="2">
-            <Menu DockPanel.Dock="Top" VerticalAlignment="Center">
-                <MenuItem Header="_File">
-                    <MenuItem x:Name="miOpen" Header="_Open" Click="MiOpen_Click"/>
-                    <MenuItem x:Name="miSaveAs" Header="_Save As" Click="MiSaveAs_Click" IsEnabled="False" />
+            <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="#1E232D">
+                <MenuItem Header="_File" Foreground="White">
+                    <MenuItem x:Name="miOpen" Header="_Open" Click="MiOpen_Click" Foreground="Black"/>
+                    <MenuItem x:Name="miSaveAs" Header="_Save As" Click="MiSaveAs_Click" IsEnabled="False" Foreground="Black"/>
                     <Separator />
-                    <MenuItem x:Name="miExit" Header="_Exit" Click="MiExit_Click" />
+                    <MenuItem x:Name="miExit" Header="_Exit" Click="MiExit_Click" Foreground="Black"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
 
+        <!--MAIN MENU-->
+        <Border BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black">
+            <StackPanel Background="#1E232D" Orientation="Horizontal" >
+                <Button x:Name="btnOpen" Content="Open File" Background="{x:Null}" BorderBrush="Black" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="16" Height="50" Width="100" Margin="100,0,0,0" BorderThickness="1,0" Click="BtnMMOpen_Click"/>
+                <Button x:Name="btnMMGenerate" Content="Generate" Background="{x:Null}" BorderBrush="Black" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="16" Height="50" Width="100" FontWeight="Bold" BorderThickness="0,0,1,0" Click="BtnMMGenerate_Click" IsEnabled="False"/>
+            </StackPanel>
+        </Border>
 
         <!--SIDE MENU-->
-        <StackPanel Background="#FF052F5F" Grid.Row="1">
-            <Button x:Name="btnReport1" Content="Report 1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport1_Click"/>
-            <Button x:Name="btnReport2" Content="Report 2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport2_Click"/>
-            <Button x:Name="btnReport3" Content="Report 3" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport3_Click"/>
-            <Button x:Name="btnReport4" Content="Report 4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport4_Click"/>
+        <StackPanel Background="#292E3B" Grid.Row="2">
+            <Button x:Name="btnReport1" Content="Report 1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport1_Click"/>
+            <Button x:Name="btnReport2" Content="Report 2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport2_Click"/>
+            <Button x:Name="btnReport3" Content="Report 3" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport3_Click"/>
+            <Button x:Name="btnReport4" Content="Report 4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#ECEDEF"  FontFamily="Microsoft Sans Serif" FontSize="14" Height="50" Click="BtnReport4_Click"/>
         </StackPanel>
 
 
         <!--File Select-->
-        <StackPanel x:Name="spFileSelect" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto">
+        <StackPanel x:Name="spFileSelect" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Select your Microsoft Access File" HorizontalAlignment="Center" FontWeight="Bold" />
             <Border BorderBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" BorderThickness="1" UseLayoutRounding="True"  >
                 <StackPanel Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Center" Orientation="Horizontal">
@@ -51,11 +59,11 @@
                 </StackPanel>
             </Border>
             <Label Content="Click Generate to create reports" HorizontalAlignment="Center"/>
-            <Button x:Name="btnGenerateReports" Content="Generate" Width=" 100" Height="25" Click="BtnGenerateReports_Click" IsEnabled="False"/>
+            <Button x:Name="btnWSGenerate" Content="Generate" Width=" 100" Height="25" Click="BtnGenerate_Click" IsEnabled="False"/>
         </StackPanel>
 
         <!--REPORTS-->
-        <DataGrid x:Name="dgReport" Grid.Column="1" Grid.Row="1" Visibility="Hidden"/>
-        
+        <DataGrid x:Name="dgReport" Grid.Column="1" Grid.Row="1" Visibility="Hidden" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>
