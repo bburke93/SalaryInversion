@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace SalaryInversion
 {
@@ -126,7 +127,7 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport1_Click(object sender, RoutedEventArgs e)
         {
-
+            HighlightSelectedReport(1);
         }
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport2_Click(object sender, RoutedEventArgs e)
         {
-
+            HighlightSelectedReport(2);
         }
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport3_Click(object sender, RoutedEventArgs e)
         {
-
+            HighlightSelectedReport(3);
         }
 
         /// <summary>
@@ -156,7 +157,7 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport4_Click(object sender, RoutedEventArgs e)
         {
-
+            HighlightSelectedReport(4);
         }
         #endregion
 
@@ -185,6 +186,10 @@ namespace SalaryInversion
                 lFileName.Content = sFilename;
 
                 dgReport.Visibility = Visibility.Hidden;
+                rectangle1.Visibility = Visibility.Hidden;
+                rectangle2.Visibility = Visibility.Hidden;
+                rectangle3.Visibility = Visibility.Hidden;
+                rectangle4.Visibility = Visibility.Hidden;
                 spFileSelect.Visibility = Visibility.Visible;
                 btnWSGenerate.IsEnabled = true;
                 btnMMGenerate.IsEnabled = true;
@@ -240,6 +245,36 @@ namespace SalaryInversion
             using (var stream = File.Create(fileName))
             {
                 encoder.Save(stream);
+            }
+        }
+
+        /// <summary>
+        /// Highlights the selected Report (SideMenu)
+        /// </summary>
+        /// <param name="reportNumber"></param>
+        void HighlightSelectedReport(int reportNumber)
+        {
+            if (dgReport.IsVisible)
+            {
+                rectangle1.Visibility = Visibility.Hidden;
+                rectangle2.Visibility = Visibility.Hidden;
+                rectangle3.Visibility = Visibility.Hidden;
+                rectangle4.Visibility = Visibility.Hidden;
+                switch (reportNumber)
+                {
+                    case 1:
+                        rectangle1.Visibility = Visibility.Visible;
+                        break;
+                    case 2:
+                        rectangle2.Visibility = Visibility.Visible;
+                        break;
+                    case 3:
+                        rectangle3.Visibility = Visibility.Visible;
+                        break;
+                    case 4:
+                        rectangle4.Visibility = Visibility.Visible;
+                        break;
+                }
             }
         }
         #endregion
