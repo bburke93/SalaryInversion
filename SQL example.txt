@@ -1,7 +1,6 @@
---Full Professor Compared to Instructor
-(SAME)
 
-SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS "Inversion $ Amount"
+
+SELECT t1.DEPT AS DEPT, SUM(t2.maxInstrSal - t1.[9MSALARY]) AS "Full<Inst", 0 AS "Full<Asst", 0 AS "Full<Asso"
 FROM MAIN as t1
 INNER JOIN
 (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal
@@ -10,10 +9,12 @@ WHERE RNK = 'Instr'
 GROUP BY DEPT, RNK) AS t2
 ON t1.DEPT = t2.DEPT
 WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal
+GROUP BY t1.DEPT
 
---Full Professor to Asst
+UNION
 
-SELECT tb1.DEPT, tb1.NAME, tb1.MaxAsstSal - tb1.salary AS "Inversion Amount"
+
+SELECT tb1.DEPT AS DEPT, 0 AS "Full<Inst", SUM(tb1.MaxAsstSal - tb1.salary) AS "Full<Asst", 0 AS "Full<Asso"
 FROM
 
 (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary,  t2.maxAsstSal AS MaxAsstSal
@@ -40,10 +41,13 @@ WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2
 
 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME
 WHERE tb2.NAME IS NULL
+GROUP BY tb1.DEPT
 
---Full Professor to Asso
 
-SELECT table1.DEPT, table1.NAME, table1.MaxAssoSal - table1.salary AS "Inversion Amount"
+UNION
+
+
+SELECT table1.DEPT AS DEPT, 0 AS "Full<Inst", 0 AS "Full<Asst", SUM(table1.MaxAssoSal - table1.salary) AS "Full<Asso"
 FROM
 
 (SELECT t1.DEPT, t1.NAME, t2.maxAssoSal AS MaxAssoSal, t1.[9MSALARY] AS salary 
@@ -73,7 +77,7 @@ WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1
 
 LEFT OUTER JOIN
 
-(SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS "Inversion $ Amount"
+(SELECT t1.DEPT, t1.NAME AS NAME, t2.maxInstrSal - t1.[9MSALARY] AS "Inversion $ Amount"
 FROM MAIN as t1
 INNER JOIN
 (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal
@@ -87,4 +91,5 @@ ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME
 WHERE tb2.NAME IS NULL) as table2
 
 ON table1.DEPT = table2.DEPT AND table1.NAME = table2.NAME
-WHERE table2.NAME IS NULL;
+WHERE table2.NAME IS NULL
+GROUP BY table1.DEPT
