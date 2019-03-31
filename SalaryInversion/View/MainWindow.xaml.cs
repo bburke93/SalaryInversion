@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Controls;
+using System.Data;
 
 namespace SalaryInversion
 {
@@ -132,12 +133,16 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Fills the Report Data grid with Report 3
+        /// Fills the Report Data grid with the Inversion Cost by Department report.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnReport3_Click(object sender, RoutedEventArgs e)
         {
+            DataSet reportData = dataProcessor.CostInversionTypeByDepartment();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            dgReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(3);
         }
 

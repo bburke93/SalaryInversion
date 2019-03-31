@@ -29,6 +29,10 @@ namespace SalaryInversion
             return null;
         }
 
+        /// <summary>
+        /// Gets a DataSet object for the Inversion Cost report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with columns for inversion types cost and grouped by deparment</returns>
         public DataSet CostInversionTypeByDepartment()
         {
             int returnedRows = 0;

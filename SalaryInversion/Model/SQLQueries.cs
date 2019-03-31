@@ -97,6 +97,11 @@ namespace SalaryInversion
         #endregion
 
         #region New Queries
+
+        /// <summary>
+        /// SQL query to generate the cost of inversion by department.
+        /// </summary>
+        /// <returns>A string with the SQL query.</returns>
         public string CostInversionSQL()
         {
             return "SELECT DEPT, SUM(FullInst) AS \"Full < Inst\", SUM(FullAsst) AS \"Full < Asst\", SUM(FullAsso) AS \"Full < Asso\", SUM(AssoInst) AS \"Asso < Inst\", " +
