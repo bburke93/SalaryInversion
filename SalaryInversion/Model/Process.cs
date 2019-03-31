@@ -19,22 +19,23 @@ namespace SalaryInversion
             query = new SQLQueries();
         }
 
-        public DataSet Report1()
+        public DataSet CountAndTotalCostInversionByDepartment()
         {
             return null;
         }
 
-        public DataSet Report2()
+        public DataSet CountInversionTypeByDepartment()
         {
             return null;
         }
 
-        public DataSet Report3()
+        public DataSet CostInversionTypeByDepartment()
         {
-            return null;
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.CostInversionSQL(), ref returnedRows);
         }
 
-        public DataSet Report4()
+        public DataSet InvertedEmployees()
         {
             return null;
         }

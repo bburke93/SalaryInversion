@@ -1,4 +1,4 @@
-SELECT DEPT, SUM(FullInst) AS "Full<Inst", SUM(FullAsst) AS "Full<Asst", SUM(FullAsso) AS "Full<Asso", SUM(AssoInst) AS "Asso<Inst", SUM(AssoAsst) AS "Asso<Asst", SUM(AsstInst) AS "Asst<Inst"
+SELECT DEPT, SUM(FullInst) AS "Full<Inst", SUM(FullAsst) AS "Full<Asst", SUM(FullAsso) AS "Full<Asso", SUM(AssoInst) AS "Asso<Inst", SUM(AssoAsst) AS "Asso<Asst", SUM(AsstInst) AS "Asst<Inst", SUM(FullInst) + SUM(FullAsst) + SUM(FullAsso) + SUM(AssoInst) + SUM(AssoAsst) + SUM(AsstInst) AS Total
 FROM
 
 (
