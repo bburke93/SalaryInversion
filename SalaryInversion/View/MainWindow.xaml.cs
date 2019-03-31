@@ -168,10 +168,10 @@ namespace SalaryInversion
             OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
             // Set filter for file extension and default file extension 
-            dlg.DefaultExt = ".accdb";
-            dlg.Filter = "Access Database Files (*.accdb)|*.accdb";
+            dlg.DefaultExt = ".mdb";
+            dlg.Filter = "Access 2000 Database Files (*.mdb)|*.mdb";
 
-            // Switch back to following line if functionality is implemented to allow .mdb files
+            // Switch back to following line if functionality is implemented to allow .accdb files
             //dlg.Filter = "Access Database Files (*.accdb)|*.accdb|Access 2000 Database Files (*.mdb)|*.mdb";
 
             // Display OpenFileDialog by calling ShowDialog method 

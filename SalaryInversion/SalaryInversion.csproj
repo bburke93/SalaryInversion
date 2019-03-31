@@ -135,6 +135,9 @@
     <Content Include="Data\2019equitymodelabbreviated.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\2019equitymodelabbreviated.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPFTheme.Windows.Theme\SalaryInversion.Windows.Theme.csproj">

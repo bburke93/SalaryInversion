@@ -20,7 +20,7 @@ using System.Reflection;
         /// <param name="filePath">The path to an access database file.</param>
 		public DataAccess(string filePath)
 		{
-            ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath;
+            ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath;
 		}
 
         /// <summary>
