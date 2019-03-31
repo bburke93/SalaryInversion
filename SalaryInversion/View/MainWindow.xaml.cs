@@ -169,7 +169,10 @@ namespace SalaryInversion
 
             // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".accdb";
-            dlg.Filter = "Access Database Files (*.accdb)|*.accdb|Access 2000 Database Files (*.mdb)|*.mdb";
+            dlg.Filter = "Access Database Files (*.accdb)|*.accdb";
+
+            // Switch back to following line if functionality is implemented to allow .mdb files
+            //dlg.Filter = "Access Database Files (*.accdb)|*.accdb|Access 2000 Database Files (*.mdb)|*.mdb";
 
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
