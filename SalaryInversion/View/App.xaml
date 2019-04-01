@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/WPFTheme.Windows.Theme;component/Theme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/SalaryInversion;component/Window.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
             
