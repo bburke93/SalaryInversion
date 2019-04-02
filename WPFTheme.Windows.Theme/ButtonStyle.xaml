@@ -33,7 +33,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Margin="{TemplateBinding Margin}">
+                    <Border Margin="{TemplateBinding Margin}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Border.Background >
                             <SolidColorBrush x:Name="BackGroundColor" Color="#1E232D"/>
                         </Border.Background>
