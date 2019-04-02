@@ -80,6 +80,10 @@
     </ApplicationDefinition>
     <Compile Include="Model\DataAccess.cs" />
     <Compile Include="Model\SQLQueries.cs" />
+    <Page Include="DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

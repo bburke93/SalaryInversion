@@ -6,11 +6,20 @@
         xmlns:local="clr-namespace:SalaryInversion"
         mc:Ignorable="d"
         Title="Salary Inversion" Height="720" Width="1280" Style="{DynamicResource DisplayWindow}">
+    <Window.Resources>
+        <Storyboard x:Key="Generate"/>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Generate}"/>
+        </EventTrigger>
+    </Window.Triggers>
 
     <!-- GRID -->
-    <Grid>
+    <Grid Background="#EBECED">
         <Grid.RowDefinitions>
             <RowDefinition Height="18"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -35,21 +44,23 @@
         <!--MAIN MENU-->
         <Border BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black">
             <StackPanel Background="#1E232D" Orientation="Horizontal" >
-                <Button x:Name="btnOpen" Content="Open File" BorderBrush="Black" Height="50" Width="100" Margin="100,0,0,0" BorderThickness="1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMOpen_Click"/>
+                <Border Height="50" BorderBrush="Black" BorderThickness="0,0,0,0" Width="100"/>
+                <Button x:Name="btnOpen" Content="Open File" BorderBrush="Black" Height="50" Width="100"  BorderThickness="1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMOpen_Click"/>
                 <Button x:Name="btnMMGenerate" Content="Generate" BorderBrush="Black" Height="50" Width="100" FontWeight="Bold" BorderThickness="0,0,1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMGenerate_Click" IsEnabled="False"/>
+                
             </StackPanel>
         </Border>
 
         <!--SIDE MENU-->
         <!--All of this is really ugly, i couldnt figure out how to make a user control for this button and all of its triggers at the same time-->
-        <StackPanel x:Name="spSideMenu" Background="#292E3B" Grid.Row="2">
+        <StackPanel x:Name="spSideMenu" Background="#1E232D" Grid.Row="2" IsEnabled="False" Grid.RowSpan="2" >
             <Button x:Name="btnReport1" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport1_Click">
                 <Grid x:Name="grid1" Height="50" Width="100">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label1" Content="Report 1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <Label x:Name="label1" Content="Report 1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle1" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -59,7 +70,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label2" Content="Report 1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <Label x:Name="label2" Content="Report 1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle2" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -69,7 +80,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label3" Content="Cost Report" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <Label x:Name="label3" Content="Cost Report" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle3" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -79,7 +90,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label4" Content="Report 4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <Label x:Name="label4" Content="Report 4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle4" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -104,7 +115,24 @@
         </StackPanel>
 
         <!--REPORTS-->
-        <DataGrid x:Name="dgReport" Grid.Column="1" Grid.Row="2" Visibility="Hidden" Grid.RowSpan="2"/>
+        <Border x:Name="bDGReport" BorderThickness="0" CornerRadius="0" Grid.Column="1" Grid.Row="3" Margin="30,0,30,0" VerticalAlignment="Top" Visibility="Hidden">
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect/>
+            </Border.BitmapEffect>
+            <Grid>
+                <Border x:Name="BDRounded" BorderThickness="0" CornerRadius="15" Background="#1E232D"/>
+                <DataGrid x:Name="dgReport" Visibility="Hidden" 
+                  Style="{DynamicResource DataGridStyle}"
+                  >
+                <DataGrid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=BDRounded}"/>
+                </DataGrid.OpacityMask>
+            </DataGrid>
+            </Grid>
+        </Border>
 
+        <Label x:Name="lblReportName" Grid.Column="1" Grid.Row="2" Content="Cost Report" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                Foreground="Black" FontSize="18" FontWeight="SemiBold" BorderThickness="0, 0, 0, 0" BorderBrush="Black"
+               Margin="30,0,30,0" Visibility="Hidden"/>
     </Grid>
 </Window>

@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/WPFTheme.Windows.Theme;component/Theme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/SalaryInversion;component/Window.xaml"/>
+                <ResourceDictionary Source="/SalaryInversion;component/DataGrid.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
             

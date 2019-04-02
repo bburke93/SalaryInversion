@@ -142,8 +142,10 @@ namespace SalaryInversion
             DataSet reportData = dataProcessor.CostInversionTypeByDepartment();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
-            dgReport.Visibility = Visibility.Visible;
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(3);
+            lblReportName.Content = "Cost Report";
+            lblReportName.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -184,7 +186,7 @@ namespace SalaryInversion
                 sFilename = dlg.FileName;
                 lFileName.Content = sFilename;
 
-                dgReport.Visibility = Visibility.Hidden;
+                bDGReport.Visibility = Visibility.Hidden;
                 rectangle1.Visibility = Visibility.Hidden;
                 rectangle2.Visibility = Visibility.Hidden;
                 rectangle3.Visibility = Visibility.Hidden;
@@ -193,6 +195,8 @@ namespace SalaryInversion
                 btnWSGenerate.IsEnabled = true;
                 btnMMGenerate.IsEnabled = true;
                 miSaveAs.IsEnabled = false;
+                spSideMenu.IsEnabled = false;
+                lblReportName.Visibility = Visibility.Hidden;
             }
         }
         
@@ -213,6 +217,7 @@ namespace SalaryInversion
             miSaveAs.IsEnabled = true;
             btnMMGenerate.IsEnabled = false;
             btnWSGenerate.IsEnabled = false;
+            spSideMenu.IsEnabled = true;
         }
 
         /// <summary>
