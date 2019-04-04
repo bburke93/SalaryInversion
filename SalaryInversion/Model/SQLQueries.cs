@@ -17,8 +17,8 @@ namespace SalaryInversion
         /// <returns>A string with the SQL query.</returns>
         public string CostInversionSQL()
         {
-            return "SELECT m.CLG, t.DEPT, FORMAT(SUM(FullInst),'$#,###,##0') AS [Full<Inst], FORMAT(SUM(FullAsst),'$#,###,##0') AS [Full<Asst], FORMAT(SUM(FullAsso),'$#,###,##0') AS [Full<Asso], FORMAT(SUM(AssoInst),'$#,###,##0') AS [Asso<Inst], " +
-                "FORMAT(SUM(AssoAsst),'$#,###,##0') AS [Asso<Asst], FORMAT(SUM(AsstInst),'$#,###,##0') AS [Asst<Inst], FORMAT(SUM(FullInst) + SUM(FullAsst) + SUM(FullAsso) + SUM(AssoInst) + SUM(AssoAsst) + SUM(AsstInst),'$#,###,##0') AS Total " +
+            return "SELECT m.CLG, t.DEPT, FORMAT(SUM(FullInst)/COUNT(*),'$#,###,##0') AS [Full<Inst], FORMAT(SUM(FullAsst)/COUNT(*),'$#,###,##0') AS [Full<Asst], FORMAT(SUM(FullAsso)/COUNT(*),'$#,###,##0') AS [Full<Asso], FORMAT(SUM(AssoInst)/COUNT(*),'$#,###,##0') AS [Asso<Inst], " +
+                "FORMAT(SUM(AssoAsst)/COUNT(*),'$#,###,##0') AS [Asso<Asst], FORMAT(SUM(AsstInst)/COUNT(*),'$#,###,##0') AS [Asst<Inst], FORMAT(SUM(FullInst)/COUNT(*) + SUM(FullAsst)/COUNT(*) + SUM(FullAsso)/COUNT(*) + SUM(AssoInst)/COUNT(*) + SUM(AssoAsst)/COUNT(*) + SUM(AsstInst)/COUNT(*),'$#,###,##0') AS Total " +
                 "FROM(SELECT t1.DEPT AS DEPT, SUM(t2.maxInstrSal - t1.[9MSALARY]) AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
                 "FROM MAIN as t1 " +
                 "INNER JOIN " +
@@ -69,8 +69,8 @@ namespace SalaryInversion
             return "SELECT CLG, FORMAT(SUM([Full<Inst1]),'$#,###,##0') AS [Full<Inst], FORMAT(SUM([Full<Asst1]),'$#,###,##0') AS [Full<Asst], FORMAT(SUM([Full<Asso1]),'$#,###,##0') AS [Full<Asso], FORMAT(SUM([Asso<Inst1]),'$#,###,##0') AS [Asso<Inst], " +
                 "FORMAT(SUM([Asso<Asst1]),'$#,###,##0') AS [Asso<Asst], FORMAT(SUM([Asst<Inst1]),'$#,###,##0') AS [Asst<Inst], FORMAT(SUM( Total1),'$#,###,##0') AS Total " +
                 "FROM ( " +
-                "SELECT m.CLG AS CLG, t.DEPT AS DEPT, FORMAT(SUM(FullInst),'$#,###,##0') AS [Full<Inst1], FORMAT(SUM(FullAsst),'$#,###,##0') AS [Full<Asst1], FORMAT(SUM(FullAsso),'$#,###,##0') AS [Full<Asso1], FORMAT(SUM(AssoInst),'$#,###,##0') AS [Asso<Inst1], " +
-                "FORMAT(SUM(AssoAsst),'$#,###,##0') AS [Asso<Asst1], FORMAT(SUM(AsstInst),'$#,###,##0') AS [Asst<Inst1], FORMAT(SUM(FullInst) + SUM(FullAsst) + SUM(FullAsso) + SUM(AssoInst) + SUM(AssoAsst) + SUM(AsstInst),'$#,###,##0') AS Total1 " +
+                "SELECT m.CLG AS CLG, t.DEPT AS DEPT, FORMAT(SUM(FullInst)/COUNT(*),'$#,###,##0') AS [Full<Inst1], FORMAT(SUM(FullAsst)/COUNT(*),'$#,###,##0') AS [Full<Asst1], FORMAT(SUM(FullAsso)/COUNT(*),'$#,###,##0') AS [Full<Asso1], FORMAT(SUM(AssoInst)/COUNT(*),'$#,###,##0') AS [Asso<Inst1], " +
+                "FORMAT(SUM(AssoAsst)/COUNT(*),'$#,###,##0') AS [Asso<Asst1], FORMAT(SUM(AsstInst)/COUNT(*),'$#,###,##0') AS [Asst<Inst1], FORMAT(SUM(FullInst)/COUNT(*) + SUM(FullAsst)/COUNT(*) + SUM(FullAsso)/COUNT(*) + SUM(AssoInst)/COUNT(*) + SUM(AssoAsst)/COUNT(*) + SUM(AsstInst)/COUNT(*),'$#,###,##0') AS Total1 " +
                 "FROM(SELECT t1.DEPT AS DEPT, SUM(t2.maxInstrSal - t1.[9MSALARY]) AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
                 "FROM MAIN as t1 " +
                 "INNER JOIN " +
