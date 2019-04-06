@@ -8,7 +8,6 @@ namespace SalaryInversion
 {
     class SQLQueries
     {
-
         #region Cost Report
 
         /// <summary>
@@ -112,6 +111,80 @@ namespace SalaryInversion
                 "WHERE t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT) AS t INNER JOIN MAIN AS m ON m.DEPT = t.DEPT GROUP BY t.DEPT, m.CLG " +
                 " ) GROUP BY CLG";
         }
+
+        #endregion
+
+        #region Inverted Employees
+
+        /// <summary>
+        /// SQL query to generate the inverted employees report.
+        /// </summary>
+        /// <returns>A string with the SQL query.</returns>
+        public string InvertedEmployeesSQL()
+        {
+            return "SELECT t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxProfSal " +
+                    "FROM MAIN as t1 " +
+                    "INNER JOIN " +
+
+                    "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxProfSal " +
+                    "FROM MAIN " +
+                    "WHERE RNK = 'Prof' " +
+                    "GROUP BY DEPT, RNK) AS t2 " +
+                    "ON t1.DEPT = t2.DEPT " +
+                    "WHERE (t1.RNK = 'Asso' AND t1.[9MSALARY] > t2.MaxProfSal) " +
+                    "OR  (t1.RNK = 'Asst' AND t1.[9MSALARY] > t2.MaxProfSal) " +
+                    "OR  (t1.RNK = 'Instr' AND t1.[9MSALARY] > t2.MaxProfSal) " +
+                    "GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxProfSal " +
+
+                    "UNION " +
+
+                    "SELECT t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxAssoSal " +
+                    "FROM MAIN as t1 " +
+                    "INNER JOIN " +
+
+                    "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxAssoSal " +
+                    "FROM MAIN " +
+                    "WHERE RNK = 'Asso' " +
+                    "GROUP BY DEPT, RNK) AS t2 " +
+                    "ON t1.DEPT = t2.DEPT " +
+                    "WHERE (t1.RNK = 'Asst' AND t1.[9MSALARY] > t2.MaxAssoSal) " +
+                    "OR  (t1.RNK = 'Instr' AND t1.[9MSALARY] > t2.MaxAssoSal) " +
+                    "OR  (t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.MaxAssoSal) " +
+                    "GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxAssoSal " +
+
+                    "UNION " +
+
+                    "SELECT t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxAsstSal " +
+                    "FROM MAIN as t1 " +
+                    "INNER JOIN " +
+
+                    "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxAsstSal " +
+                    "FROM MAIN " +
+                    "WHERE RNK = 'Asst' " +
+                    "GROUP BY DEPT, RNK) AS t2 " +
+                    "ON t1.DEPT = t2.DEPT " +
+                    "WHERE (t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.MaxAsstSal) " +
+                    "OR  (t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.MaxAsstSal) " +
+                    "OR (t1.RNK = 'Instr' AND t1.[9MSALARY] > t2.MaxAsstSal) " +
+                    "GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxAsstSal " +
+
+                    "UNION " +
+
+                    "SELECT t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxInstrSal " +
+                    "FROM MAIN as t1 " +
+                    "INNER JOIN " +
+
+                    "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxInstrSal " +
+                    "FROM MAIN " +
+                    "WHERE RNK = 'Instr' " +
+                    "GROUP BY DEPT, RNK) AS t2 " +
+                    "ON t1.DEPT = t2.DEPT " +
+                    "WHERE (t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.MaxInstrSal) " +
+                    "OR  (t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.MaxInstrSal) " +
+                    "OR  (t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.MaxInstrSal) " +
+                    "GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxInstrSal";
+        }
+
         #endregion
     }
 }

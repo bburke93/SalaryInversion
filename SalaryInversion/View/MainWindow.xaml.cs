@@ -149,16 +149,21 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Fills the Report Data grid with Report 4
+        /// Fills the Report Data grid with the Inverted Employees report.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnReport4_Click(object sender, RoutedEventArgs e)
         {
+            DataSet reportData = dataProcessor.InvertedEmployees();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(4);
+            lblReportName.Content = "Inverted Employees";
+            lblReportName.Visibility = Visibility.Visible;
         }
         #endregion
-
 
         #region HELPER FUNCTIONS
         /// <summary>
@@ -232,7 +237,7 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Saves a FrameWorkElement to  the filepath using the specified encoder
+        /// Saves a FrameWorkElement to the filepath using the specified encoder
         /// </summary>
         /// <param name="visual"></param>
         /// <param name="fileName"></param>

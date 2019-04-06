@@ -32,16 +32,21 @@ namespace SalaryInversion
         /// <summary>
         /// Gets a DataSet object for the Inversion Cost report.
         /// </summary>
-        /// <returns>A DataSet containing a single table with columns for inversion types cost and grouped by deparment</returns>
+        /// <returns>A DataSet containing a single table with columns for inversion types cost and grouped by deparment.</returns>
         public DataSet CostInversionTypeByDepartment()
         {
             int returnedRows = 0;
             return db.ExecuteSQLStatement(query.CostInversionSQL(), ref returnedRows);
         }
 
+        /// <summary>
+        /// Gets a DataSet object for the Inverted Employees report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with data showing all inverted employees.</returns>
         public DataSet InvertedEmployees()
         {
-            return null;
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.InvertedEmployeesSQL(), ref returnedRows);
         }
 
         #region Deprecated Code For Employee objects/CSV
