@@ -119,7 +119,13 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport1_Click(object sender, RoutedEventArgs e)
         {
+            DataSet reportData = dataProcessor.CountInversionTypeByDepartment();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(1);
+            lblReportName.Content = "Count Report by Department";
+            lblReportName.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -144,7 +150,7 @@ namespace SalaryInversion
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(3);
-            lblReportName.Content = "Cost Report";
+            lblReportName.Content = "Cost Report by Department";
             lblReportName.Visibility = Visibility.Visible;
         }
 
