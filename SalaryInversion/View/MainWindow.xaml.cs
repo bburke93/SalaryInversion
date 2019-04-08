@@ -150,7 +150,6 @@ namespace SalaryInversion
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             HighlightSelectedReport(3);
             lblReportName.Content = "Cost Report by Department";
-            //lblReportName.Visibility = Visibility.Visible;
         }
 
         /// <summary>
