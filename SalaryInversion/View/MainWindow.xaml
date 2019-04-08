@@ -24,7 +24,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -44,7 +44,7 @@
         <!--MAIN MENU-->
         <Border BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black">
             <StackPanel Background="#1E232D" Orientation="Horizontal" >
-                <Border Height="50" BorderBrush="Black" BorderThickness="0,0,0,0" Width="100"/>
+                <Border Height="50" BorderBrush="Black" BorderThickness="0,0,0,0" Width="120"/>
                 <Button x:Name="btnOpen" Content="Open File" BorderBrush="Black" Height="50" Width="100"  BorderThickness="1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMOpen_Click"/>
                 <Button x:Name="btnMMGenerate" Content="Generate" BorderBrush="Black" Height="50" Width="100" FontWeight="Bold" BorderThickness="0,0,1,0" Style="{StaticResource ButtonMainMenu}" Click="BtnMMGenerate_Click" IsEnabled="False"/>
                 
@@ -55,7 +55,7 @@
         <!--All of this is really ugly, i couldnt figure out how to make a user control for this button and all of its triggers at the same time-->
         <StackPanel x:Name="spSideMenu" Background="#1E232D" Grid.Row="2" IsEnabled="False" Grid.RowSpan="2" >
             <Button x:Name="btnReport1" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport1_Click" BorderBrush="Black" BorderThickness="0,1,0,0">
-                <Grid x:Name="grid1" Height="50" Width="100">
+                <Grid x:Name="grid1" Height="50" Width="120">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
@@ -65,7 +65,7 @@
                 </Grid>
             </Button>
             <Button x:Name="btnReport2" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport2_Click" BorderBrush="Black" BorderThickness="0,1,0,0">
-                <Grid x:Name="grid2" Height="50" Width="100">
+                <Grid x:Name="grid2" Height="50" Width="120">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
@@ -75,7 +75,7 @@
                 </Grid>
             </Button>
             <Button x:Name="btnReport3" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport3_Click" BorderBrush="Black" BorderThickness="0,1,0,0">
-                <Grid x:Name="grid3" Height="50" Width="100">
+                <Grid x:Name="grid3" Height="50" Width="120">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
@@ -84,14 +84,34 @@
                     <Rectangle x:Name="rectangle3" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
-            <Button x:Name="btnReport4" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport4_Click" BorderBrush="Black" BorderThickness="0,1,0,1">
-                <Grid x:Name="grid4" Height="50" Width="100">
+            <Button x:Name="btnReport4" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport4_Click" BorderBrush="Black" BorderThickness="0,1,0,0">
+                <Grid x:Name="grid4" Height="50" Width="120">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label x:Name="label4" Content="Inversions" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle4" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
+                </Grid>
+            </Button>
+            <Button x:Name="btnReport5" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport5_Click" BorderBrush="Black" BorderThickness="0,1,0,0">
+                <Grid x:Name="grid5" Height="50" Width="120">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="label5" Content="Button 5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Rectangle x:Name="rectangle5" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
+                </Grid>
+            </Button>
+            <Button x:Name="btnReport6" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport6_Click" BorderBrush="Black" BorderThickness="0,1,0,1">
+                <Grid x:Name="grid6" Height="50" Width="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="label6" Content="Button 6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Rectangle x:Name="rectangle6" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
 

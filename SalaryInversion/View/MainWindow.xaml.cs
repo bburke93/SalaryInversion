@@ -142,10 +142,8 @@ namespace SalaryInversion
             DataSet reportData = dataProcessor.CostInversionTypeByDepartment();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
-            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(3);
             lblReportName.Content = "Cost Report";
-            lblReportName.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -158,12 +156,22 @@ namespace SalaryInversion
             DataSet reportData = dataProcessor.InvertedEmployees();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
-            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(4);
             lblReportName.Content = "Inverted Employees";
-            lblReportName.Visibility = Visibility.Visible;
+        }
+
+        private void BtnReport5_Click(object sender, RoutedEventArgs e)
+        {
+            HighlightSelectedReport(5);
+        }
+
+        private void BtnReport6_Click(object sender, RoutedEventArgs e)
+        {
+            bDGReport.Visibility = Visibility.Visible;
+            HighlightSelectedReport(6);
         }
         #endregion
+
 
         #region HELPER FUNCTIONS
         /// <summary>
@@ -216,6 +224,7 @@ namespace SalaryInversion
             spFileSelect.Visibility = Visibility.Hidden;
             //Show the DataGrid
             dgReport.Visibility = Visibility.Visible;
+            bDGReport.Visibility = Visibility.Visible;
 
 
             //I will databind the datagrid to the dataview property
@@ -261,12 +270,14 @@ namespace SalaryInversion
         /// <param name="reportNumber"></param>
         void HighlightSelectedReport(int reportNumber)
         {
-            if (dgReport.IsVisible)
+            if (bDGReport.IsVisible)
             {
                 rectangle1.Visibility = Visibility.Hidden;
                 rectangle2.Visibility = Visibility.Hidden;
                 rectangle3.Visibility = Visibility.Hidden;
                 rectangle4.Visibility = Visibility.Hidden;
+                rectangle5.Visibility = Visibility.Hidden;
+                rectangle6.Visibility = Visibility.Hidden;
                 switch (reportNumber)
                 {
                     case 1:
@@ -280,6 +291,12 @@ namespace SalaryInversion
                         break;
                     case 4:
                         rectangle4.Visibility = Visibility.Visible;
+                        break;
+                    case 5:
+                        rectangle5.Visibility = Visibility.Visible;
+                        break;
+                    case 6:
+                        rectangle6.Visibility = Visibility.Visible;
                         break;
                 }
             }
