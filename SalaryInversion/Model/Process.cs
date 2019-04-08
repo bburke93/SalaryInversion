@@ -24,9 +24,14 @@ namespace SalaryInversion
             return null;
         }
 
+        /// <summary>
+        /// Gets a DataSet object for the Inversion Count report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with columns for inverison types count and grouped by department.</returns>
         public DataSet CountInversionTypeByDepartment()
         {
-            return null;
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.CountInversionDepartmentSQL(), ref returnedRows);
         }
 
         /// <summary>
