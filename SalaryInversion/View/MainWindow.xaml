@@ -60,7 +60,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label1" Content="Report 1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label1" Content="Count by Dept." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle1" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -70,7 +70,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label2" Content="Report 2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label2" Content="Count by Clg." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle2" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
