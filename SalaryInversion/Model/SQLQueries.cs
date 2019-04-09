@@ -187,6 +187,10 @@ namespace SalaryInversion
 
         #region Count Report
 
+        /// <summary>
+        /// SQL query to generate the count of inversions by College.
+        /// </summary>
+        /// <returns>A string with the SQL query.</returns>
         public string CountInversionCollegeSQL()
         {
             return "SELECT CLG, SUM(ft.[ASST<INSTR]) AS [ASST<INSTR], SUM(ft.[ASSO<INSTR]) AS [ASSO<INSTR],SUM(ft.[FULL<INSTR]) AS [FULL<INSTR],\n"
