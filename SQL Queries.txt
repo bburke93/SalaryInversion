@@ -1,3 +1,47 @@
+SELECT DEPT, SUM(MaxProfSal1) AS MaxProfSal, SUM(MaxAssoSal1) AS MaxAssoSal, SUM(MaxAsstSal1) AS MaxAsstSal, SUM(MaxInstrSal1) AS MaxInstrSal
+
+FROM
+
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Prof'
+				GROUP BY DEPT, RNK
+
+
+UNION
+
+
+SELECT DEPT, RNK,  0 AS MaxProfSal1, MAX(MAIN.[9MSALARY]) AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Asso'
+				GROUP BY DEPT, RNK
+
+
+				UNION
+
+
+				SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, MAX(MAIN.[9MSALARY]) AS maxAsstSal1, 0 AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Asst'
+				GROUP BY DEPT, RNK
+
+
+				UNION
+
+
+				SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS maxAsstSal1, MAX(MAIN.[9MSALARY]) AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Instr'
+				GROUP BY DEPT, RNK)
+
+GROUP BY DEPT;
+
+
+
+
+
+
+
 --NEW WAY TO COUNT
 
 
