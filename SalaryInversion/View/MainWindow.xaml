@@ -105,7 +105,7 @@
                 </Grid>
             </Button>
             <Button x:Name="btnReport6" Style="{StaticResource ButtonSideMenu}" Height="50" Click="BtnReport6_Click" BorderBrush="Black" BorderThickness="0,1,0,1">
-                <Grid x:Name="grid6" Height="50" Width="100">
+                <Grid x:Name="grid6" Height="50" Width="120">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
@@ -141,7 +141,7 @@
             </Border.BitmapEffect>
             <Grid>
                 <Border x:Name="BDRounded" BorderThickness="0" CornerRadius="15" Background="#1E232D"/>
-                <DataGrid x:Name="dgReport" Visibility="Hidden" 
+                <DataGrid x:Name="dgReport" Visibility="Hidden" IsReadOnly="True"
                   Style="{DynamicResource DataGridStyle}"
                           MinWidth="800" GridLinesVisibility="All" SelectionUnit="Cell"
                   >
