@@ -18,14 +18,9 @@ namespace SalaryInversion
             db = new DataAccess(filePath);
             query = new SQLQueries();
         }
-
-        public DataSet CountAndTotalCostInversionByDepartment()
-        {
-            return null;
-        }
-
+        
         /// <summary>
-        /// Gets a DataSet object for the Inversion Count report.
+        /// Gets a DataSet object for the Inversion Count by Department report.
         /// </summary>
         /// <returns>A DataSet containing a single table with columns for inverison types count and grouped by department.</returns>
         public DataSet CountInversionTypeByDepartment()
@@ -35,13 +30,33 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Gets a DataSet object for the Inversion Cost report.
+        /// Gets a DataSet object for the Inversion Count by College report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with columns for inverison types count and grouped by college.</returns>
+        public DataSet CountInversionTypeByCollege()
+        {
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.CountInversionCollegeSQL(), ref returnedRows);
+        }
+
+        /// <summary>
+        /// Gets a DataSet object for the Inversion Cost by Department report.
         /// </summary>
         /// <returns>A DataSet containing a single table with columns for inversion types cost and grouped by deparment.</returns>
         public DataSet CostInversionTypeByDepartment()
         {
             int returnedRows = 0;
-            return db.ExecuteSQLStatement(query.CostInversionSQL(), ref returnedRows);
+            return db.ExecuteSQLStatement(query.CostInversionDepartmentSQL(), ref returnedRows);
+        }
+
+        /// <summary>
+        /// Gets a DataSet object for the Inversion Cost by College report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with columns for inversion types cost and grouped by college.</returns>
+        public DataSet CostInversionTypeByCollege()
+        {
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.CostInversionCollegeSQL(), ref returnedRows);
         }
 
         /// <summary>
@@ -53,49 +68,5 @@ namespace SalaryInversion
             int returnedRows = 0;
             return db.ExecuteSQLStatement(query.InvertedEmployeesSQL(), ref returnedRows);
         }
-
-        #region Deprecated Code For Employee objects/CSV
-        /// <summary>
-        /// Get's a list containing all employees from the sample databse. Used for demonstration only.
-        /// </summary>
-        /// <returns>A list of Employee objects</returns>
-        public List<Employee> GetEmployees()
-        {
-            return GetEmployees("../../Data/2019eqmodelabbreviated.csv");
-        }
-
-        /// <summary>
-        /// Get's a list containg all employees.
-        /// </summary>
-        /// <param name="filePath">Filepath to a CSV containing all employees.</param>
-        /// <returns>A list of Employee objects.</returns>
-        public List<Employee> GetEmployees(string filePath)
-        {
-            List<Employee> employees = new List<Employee>();
-            var input = File.ReadAllLines(filePath);
-
-            // Get lines from input file and generate employee objects
-            foreach (string line in input)
-            {
-                var values = line.Split(',');
-
-                // If statement simply skips the header row from the CSV file
-                if (values[0] == "CLG")
-                {
-                    continue;
-                }
-
-                // Seperate values out for easier reading
-                string college = values[0];
-                string department = values[1];
-                string name = values[2].Replace("\"", "") + ", " + values[3].Replace("\"", "");
-                string rank = values[4];
-                int salary = int.Parse(values[5]);
-
-                employees.Add(new Employee(college, department, name, rank, salary));
-            }
-            return employees;
-        }
-        #endregion
     }
 }

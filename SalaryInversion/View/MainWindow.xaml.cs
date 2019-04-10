@@ -23,8 +23,7 @@ namespace SalaryInversion
         private Process dataProcessor;
         private List<Employee> employees = new List<Employee>();
         #endregion
-
-
+        
         #region UI METHODS
         public MainWindow()
         {
@@ -113,7 +112,7 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Fills the Report Data grid with Report 1
+        /// Fills the Report Data grid with the Inversion Count by Department report.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -129,13 +128,19 @@ namespace SalaryInversion
         }
 
         /// <summary>
-        /// Fills the Report Data grid with Report 2
+        /// Fills the Report Data grid with the Inversion Count by College report.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnReport2_Click(object sender, RoutedEventArgs e)
         {
+            DataSet reportData = dataProcessor.CountInversionTypeByCollege();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(2);
+            lblReportName.Content = "Count Report by College";
+            lblReportName.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -150,6 +155,23 @@ namespace SalaryInversion
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             HighlightSelectedReport(3);
             lblReportName.Content = "Cost Report by Department";
+            lblReportName.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Fills the Report Data grid with the Inversion Cost by College report.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnReport4_Click(object sender, RoutedEventArgs e)
+        {
+            DataSet reportData = dataProcessor.CostInversionTypeByCollege();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
+            HighlightSelectedReport(4);
+            lblReportName.Content = "Cost Report by College";
+            lblReportName.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -157,18 +179,13 @@ namespace SalaryInversion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnReport4_Click(object sender, RoutedEventArgs e)
+        private void BtnReport5_Click(object sender, RoutedEventArgs e)
         {
             DataSet reportData = dataProcessor.InvertedEmployees();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
-            HighlightSelectedReport(4);
-            lblReportName.Content = "Inverted Employees";
-        }
-
-        private void BtnReport5_Click(object sender, RoutedEventArgs e)
-        {
             HighlightSelectedReport(5);
+            lblReportName.Content = "Inverted Employees";
         }
 
         private void BtnReport6_Click(object sender, RoutedEventArgs e)
@@ -177,9 +194,9 @@ namespace SalaryInversion
             HighlightSelectedReport(6);
         }
         #endregion
-
-
+        
         #region HELPER FUNCTIONS
+
         /// <summary>
         /// Creates an Open file Dialogue box to browse your files and select an Access DB file
         /// </summary>
@@ -307,6 +324,7 @@ namespace SalaryInversion
                 }
             }
         }
+
         #endregion
     }
 }
