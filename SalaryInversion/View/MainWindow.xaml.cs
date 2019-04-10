@@ -72,6 +72,17 @@ namespace SalaryInversion
         }
 
         /// <summary>
+        /// Exits out of the app (TaskBar)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiHowToUse_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+
+        /// <summary>
         /// Opens the File (Main Menu)
         /// </summary>
         /// <param name="sender"></param>

@@ -38,6 +38,9 @@
                     <Separator />
                     <MenuItem x:Name="miExit" Header="_Exit" Click="MiExit_Click" Foreground="Black"/>
                 </MenuItem>
+                <MenuItem Header="_Help" Background="#1E232D">
+                    <MenuItem x:Name="miHowToUse" Header="HowToUse" Click="MiHowToUse_Click" Foreground="Black"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
 
@@ -155,5 +158,8 @@
         <Label x:Name="lblReportName" Grid.Column="1" Grid.Row="2" Content="Cost Report" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" 
                 Foreground="Black" FontSize="18" FontWeight="SemiBold" BorderThickness="0, 0, 0, 0" BorderBrush="Black"
                Margin="30,0,30,0" Visibility="Hidden"/>
+        
+        <!--HelpMenu-->
+        <TextBlock Text="Database file must have columns CLG, DEPT, NAME, RNK, 9MSALARY. C"/>
     </Grid>
 </Window>
