@@ -16,7 +16,7 @@ namespace SalaryInversion
         /// <returns>A string with the SQL query.</returns>
         public string CostInversionDepartmentSQL()
         {
-            return "SELECT DISTINCT IIF(t.DEPT IS NULL, NULL, m.CLG) AS College, " +
+            return "SELECT DISTINCT m.CLG AS College, " +
                 "t.DEPT AS Department, " +
                 "FORMAT(SUM(AsstInst),'$#,###,##0') AS [Asst<Inst], " +
                 "FORMAT(SUM(AssoInst),'$#,###,##0') AS [Asso<Inst], " + 
@@ -64,7 +64,7 @@ namespace SalaryInversion
                 "WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxInstSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME WHERE tb2.NAME IS NULL " +
                 "GROUP BY tb1.DEPT UNION SELECT t1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, SUM(t2.maxInstSal - t1.[9MSALARY]) AS AsstInst " +
                 "FROM MAIN as t1 INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
-                "WHERE t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT) AS t ON t.DEPT = m.DEPT GROUP BY t.DEPT, m.CLG";
+                "WHERE t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT) AS t ON t.DEPT = m.DEPT WHERE t.DEPT IS NOT NULL GROUP BY t.DEPT, m.CLG";
         }
 
         /// <summary>
