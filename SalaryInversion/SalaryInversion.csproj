@@ -146,6 +146,7 @@
     <Content Include="Data\2019equitymodelabbreviated.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Data\ExampleDatabase.PNG" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPFTheme.Windows.Theme\SalaryInversion.Windows.Theme.csproj">

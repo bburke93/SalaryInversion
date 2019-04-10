@@ -78,7 +78,7 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void MiHowToUse_Click(object sender, RoutedEventArgs e)
         {
-            
+            showContainer("HelpMenu");
         }
 
 
@@ -233,17 +233,13 @@ namespace SalaryInversion
                 sFilename = dlg.FileName;
                 lFileName.Content = sFilename;
 
-                bDGReport.Visibility = Visibility.Hidden;
-                rectangle1.Visibility = Visibility.Hidden;
-                rectangle2.Visibility = Visibility.Hidden;
-                rectangle3.Visibility = Visibility.Hidden;
-                rectangle4.Visibility = Visibility.Hidden;
-                spFileSelect.Visibility = Visibility.Visible;
+            
+                
                 btnWSGenerate.IsEnabled = true;
                 btnMMGenerate.IsEnabled = true;
                 miSaveAs.IsEnabled = false;
                 spSideMenu.IsEnabled = false;
-                lblReportName.Visibility = Visibility.Hidden;
+                showContainer("SelectFile");
             }
         }
         
@@ -254,18 +250,14 @@ namespace SalaryInversion
         {
             dataProcessor = new Process(sFilename);
 
-            //Hide the SelectFile panel
-            spFileSelect.Visibility = Visibility.Hidden;
-            //Show the DataGrid
-            dgReport.Visibility = Visibility.Visible;
-            bDGReport.Visibility = Visibility.Visible;
-
 
             //I will databind the datagrid to the dataview property
             miSaveAs.IsEnabled = true;
             btnMMGenerate.IsEnabled = false;
             btnWSGenerate.IsEnabled = false;
-            spSideMenu.IsEnabled = true;
+            
+
+            showContainer("Report");
         }
 
         /// <summary>
@@ -336,6 +328,34 @@ namespace SalaryInversion
             }
         }
 
+        void showContainer(string sContainer)
+        {
+            rectangle1.Visibility = Visibility.Hidden;
+            rectangle2.Visibility = Visibility.Hidden;
+            rectangle3.Visibility = Visibility.Hidden;
+            rectangle4.Visibility = Visibility.Hidden;
+            rectangle5.Visibility = Visibility.Hidden;
+            rectangle6.Visibility = Visibility.Hidden;
+            spFileSelect.Visibility = Visibility.Hidden;
+            spHelpMenu.Visibility = Visibility.Hidden;
+            bDGReport.Visibility = Visibility.Hidden;
+            lblReportName.Visibility = Visibility.Hidden;
+            spSideMenu.IsEnabled = false;
+            switch (sContainer)
+            {
+                case "HelpMenu":
+                    spHelpMenu.Visibility = Visibility.Visible;
+                    break;
+                case "Report":
+                    bDGReport.Visibility = Visibility.Visible;
+                    lblReportName.Visibility = Visibility.Visible;
+                    spSideMenu.IsEnabled = true;
+                    break;
+                case "SelectFile":
+                    spFileSelect.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
         #endregion
     }
 }
