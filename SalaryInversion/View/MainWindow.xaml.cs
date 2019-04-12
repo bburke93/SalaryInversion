@@ -201,8 +201,9 @@ namespace SalaryInversion
 
         private void BtnReport6_Click(object sender, RoutedEventArgs e)
         {
-            bDGReport.Visibility = Visibility.Visible;
+            dgReport.ItemsSource = dataProcessor.InvertedEmployees().Tables[0].AsDataView();
             HighlightSelectedReport(6);
+            lblReportName.Content = "Summary";
         }
         #endregion
         
@@ -250,13 +251,13 @@ namespace SalaryInversion
         {
             dataProcessor = new Process(sFilename);
 
-
             //I will databind the datagrid to the dataview property
             miSaveAs.IsEnabled = true;
             btnMMGenerate.IsEnabled = false;
             btnWSGenerate.IsEnabled = false;
-            
 
+
+            defaultReport();
             showContainer("Report");
         }
 
@@ -355,6 +356,13 @@ namespace SalaryInversion
                     spFileSelect.Visibility = Visibility.Visible;
                     break;
             }
+        }
+
+        void defaultReport()
+        {
+            dgReport.ItemsSource = dataProcessor.InvertedEmployees().Tables[0].AsDataView(); //change once report is done
+            HighlightSelectedReport(6);
+            lblReportName.Content = "Summary";
         }
         #endregion
     }
