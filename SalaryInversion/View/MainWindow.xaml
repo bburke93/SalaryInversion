@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalaryInversion"
         mc:Ignorable="d"
-        Title="Salary Inversion" Height="720" Width="1280" Style="{DynamicResource DisplayWindow}">
+        Title="Salary Inversion" Height="720" Width="1280" Style="{DynamicResource DisplayWindow}" Icon="/SalaryInversion;component/Data/salaryIcon.png">
     <Window.Resources>
         <Storyboard x:Key="Generate"/>
     </Window.Resources>
