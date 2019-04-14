@@ -83,65 +83,48 @@ IN PROCESS.CS
         }
 
 ACCESS SQL
-SELECT t1.DEPT AS DEPT, t1.Name AS Name, t1.RNK AS RNK, t1.[9MSALARY] AS Salary, MaxProfSal, MaxAssoSal, MaxAsstSal, MaxInstrSal
+SELECT t1.DEPT, t1.NAME, t1.RNK, t1.[9MSALARY] AS Salary, t2.MaxProfSal, t2.MaxAsstSal, t2.MaxAssoSal, t2.MaxInstrSal
 FROM MAIN as t1
 
 INNER JOIN
 
-(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxProfSal,  0 AS MaxAssoSal, 0 AS MaxAsstSal, 0 AS MaxInstrSal
-FROM MAIN
-WHERE RNK = 'Prof'
-GROUP BY DEPT, RNK) AS t2
-ON t1.DEPT = t2.DEPT
-WHERE (t1.RNK = 'Asso' AND t1.[9MSALARY] > t2.MaxProfSal)
-OR  (t1.RNK = 'Asst' AND t1.[9MSALARY] > t2.MaxProfSal)
-OR  (t1.RNK = 'Instr' AND t1.[9MSALARY] > t2.MaxProfSal)
-GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxProfSal, MaxAssoSal, MaxAsstSal, MaxInstrSal
+(SELECT DEPT, SUM(MaxProfSal1) AS MaxProfSal, SUM(MaxAssoSal1) AS MaxAssoSal, SUM(MaxAsstSal1) AS MaxAsstSal, SUM(MaxInstrSal1) AS MaxInstrSal
+
+FROM
+
+(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Prof'
+				GROUP BY DEPT, RNK
+
 
 UNION
 
-SELECT t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxAssoSal , 0 AS MaxProfSal, 0 AS MaxAsstSal, 0 AS MaxInstrSal
-FROM MAIN as t1
-INNER JOIN
 
-(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxAssoSal
-FROM MAIN
-WHERE RNK = 'Asso'
-GROUP BY DEPT, RNK) AS t2
+SELECT DEPT, RNK,  0 AS MaxProfSal1, MAX(MAIN.[9MSALARY]) AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Asso'
+				GROUP BY DEPT, RNK
+
+
+				UNION
+
+
+				SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, MAX(MAIN.[9MSALARY]) AS maxAsstSal1, 0 AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Asst'
+				GROUP BY DEPT, RNK
+
+
+				UNION
+
+
+				SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS maxAsstSal1, MAX(MAIN.[9MSALARY]) AS MaxInstrSal1
+				FROM MAIN
+				WHERE RNK = 'Instr'
+GROUP BY DEPT, RNK)
+				GROUP BY DEPT) AS t2
+
 ON t1.DEPT = t2.DEPT
-WHERE (t1.RNK = 'Asst' AND t1.[9MSALARY] > t2.MaxAssoSal)
-OR  (t1.RNK = 'Instr' AND t1.[9MSALARY] > t2.MaxAssoSal)
-OR  (t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.MaxAssoSal)
-GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxProfSal, MaxAssoSal, MaxAsstSal, MaxInstrSal
+ORDER BY t1.DEPT
 
-UNION
-
-SELECT t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxAsstSal, 0 AS MaxProfSal, 0 AS MaxAssoSal, 0 AS MaxInstrSal
-FROM MAIN as t1
-INNER JOIN
-
-(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxAsstSal
-FROM MAIN
-WHERE RNK = 'Asst'
-GROUP BY DEPT, RNK) AS t2
-ON t1.DEPT = t2.DEPT
-WHERE (t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.MaxAsstSal)
-OR  (t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.MaxAsstSal)
-OR (t1.RNK = 'Instr' AND t1.[9MSALARY] > t2.MaxAsstSal)
-GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxProfSal, MaxAssoSal, MaxAsstSal, MaxInstrSal
-
-UNION
-
-SELECT  t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY] AS Salary, MaxInstrSal, 0 AS MaxProfSal, 0 AS MaxAsstSal, 0 AS MaxAssoSal
-FROM MAIN as t1
-INNER JOIN
-
-(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxInstrSal
-FROM MAIN
-WHERE RNK = 'Instr'
-GROUP BY DEPT, RNK) AS t2
-ON t1.DEPT = t2.DEPT
-WHERE (t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.MaxInstrSal)
-OR  (t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.MaxInstrSal)
-OR  (t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.MaxInstrSal)
-GROUP BY t1.DEPT, t1.Name, t1.RNK, t1.[9MSALARY], MaxProfSal, MaxAssoSal, MaxAsstSal, MaxInstrSal
