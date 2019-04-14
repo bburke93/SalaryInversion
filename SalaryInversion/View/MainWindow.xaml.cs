@@ -21,7 +21,6 @@ namespace SalaryInversion
         /// </summary>
         string sFilename;
         private Process dataProcessor;
-        private List<Employee> employees = new List<Employee>();
         #endregion
         
         #region UI METHODS
