@@ -83,7 +83,7 @@ IN PROCESS.CS
         }
 
 ACCESS SQL
-SELECT t1.DEPT, t1.NAME, t1.RNK, t1.[9MSALARY] AS Salary, t2.MaxProfSal, t2.MaxAsstSal, t2.MaxAssoSal, t2.MaxInstrSal
+SELECT t1.DEPT, t1.NAME, t1.RNK, t1.[9MSALARY] AS Salary, t2.MaxProfSal, t2.MaxAssoSal, t2.MaxAsstSal, t2.MaxInstrSal
 FROM MAIN as t1
 
 INNER JOIN
@@ -126,4 +126,13 @@ GROUP BY DEPT, RNK)
 				GROUP BY DEPT) AS t2
 
 ON t1.DEPT = t2.DEPT
-ORDER BY t1.DEPT
+
+WHERE (RNK = 'Prof' AND [9MSALARY] <= MaxAssoSal)
+OR (RNK = 'Prof' AND [9MSALARY] <= MaxAsstSal)
+OR (RNK = 'Prof' AND [9MSALARY] <= MaxInstrSal)
+OR (RNK = 'Asso' AND [9MSALARY] <= MaxAsstSal)
+OR (RNK = 'Asso' AND [9MSALARY] <= MaxInstrSal)
+OR (RNK = 'Asst' AND [9MSALARY] <= MaxInstrSal)
+
+ORDER BY t1.DEPT, RNK
+
