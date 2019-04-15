@@ -63,7 +63,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label1" Content="Count by Dept." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label1" Content="Count by dept." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle1" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -73,7 +73,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label2" Content="Count by Clg." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label2" Content="Count by clg." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle2" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -83,7 +83,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label3" Content="Cost By Dept." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label3" Content="Cost by dept." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle3" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -93,7 +93,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label4" Content="Cost by Clg." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label4" Content="Cost by clg." Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle4" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
