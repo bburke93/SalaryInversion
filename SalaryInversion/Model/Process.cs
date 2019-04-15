@@ -68,5 +68,17 @@ namespace SalaryInversion
             int returnedRows = 0;
             return db.ExecuteSQLStatement(query.InvertedEmployeesSQL(), ref returnedRows);
         }
+
+        public DataSet SummaryReport()
+        {
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.numAndDolInv(), ref returnedRows);
+        }
+
+        public DataSet SummaryReportTotals()
+        {
+            int returnedRows = 0;
+            return db.ExecuteSQLStatement(query.numAndDolInvTotals(), ref returnedRows);
+        }
     }
 }
