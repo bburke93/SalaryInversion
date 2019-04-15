@@ -194,15 +194,21 @@ namespace SalaryInversion
             DataSet reportData = dataProcessor.InvertedEmployees();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(5);
             lblReportName.Content = "Inverted Employees";
+            lblReportName.Visibility = Visibility.Visible;
         }
 
         private void BtnReport6_Click(object sender, RoutedEventArgs e)
         {
-            dgReport.ItemsSource = dataProcessor.InvertedEmployees().Tables[0].AsDataView();
+            DataSet reportData = dataProcessor.SummaryReport();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(6);
             lblReportName.Content = "Summary";
+            lblReportName.Visibility = Visibility.Visible;
         }
         #endregion
         
@@ -359,9 +365,13 @@ namespace SalaryInversion
 
         void defaultReport()
         {
-            dgReport.ItemsSource = dataProcessor.InvertedEmployees().Tables[0].AsDataView(); //change once report is done
+            DataSet reportData = dataProcessor.SummaryReport();
+            dgReport.ItemsSource = null;
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(6);
             lblReportName.Content = "Summary";
+            lblReportName.Visibility = Visibility.Visible;
         }
         #endregion
     }
