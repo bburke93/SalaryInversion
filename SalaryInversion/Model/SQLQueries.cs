@@ -789,5 +789,720 @@ namespace SalaryInversion
         }
 
         #endregion
+            
+        #region Summary
+        
+        /// <summary>
+        /// Summary report
+        /// </summary>
+        /// <returns></returns>
+        public string numAndDolInv()
+        {
+            return "SELECT ta.College, ta.Department, (tr.[Asst<Inst] + tr.[Asso<Inst] + tr.[Full<Inst] + tr.[Asso<Asst] + tr.[Full<Asst] + tr.[Full<Asso]) AS [# Of Inversions], " +
+                "FORMAT(ta.[Asst<Inst] + ta.[Asso<Inst] + ta.[Full<Inst] + ta.[Asso<Asst] + ta.[Full<Asst] + ta.[Full<Asso],'$#,###,##0') AS [$ Amount] FROM " +
+                "(SELECT DISTINCT m.CLG AS College, " +
+                "t.DEPT AS Department, " +
+                "SUM(AsstInst) AS [Asst<Inst], " +
+                "SUM(AssoInst) AS [Asso<Inst], " +
+                "SUM(FullInst) AS [Full<Inst], " +
+                "SUM(AssoAsst) AS [Asso<Asst], " +
+                "SUM(FullAsst) AS [Full<Asst], " +
+                "SUM(FullAsso) AS [Full<Asso], " +
+                "FORMAT(SUM(FullInst) + SUM(FullAsst) + SUM(FullAsso) + SUM(AssoInst) + SUM(AssoAsst) + SUM(AsstInst),'$#,###,##0') AS Total " +
+                "FROM (SELECT DISTINCT CLG, DEPT FROM MAIN) as m LEFT JOIN " +
+                "(SELECT t1.DEPT AS DEPT, SUM(t2.maxInstrSal - t1.[9MSALARY]) AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM MAIN as t1 " +
+                "INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal " +
+                "FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal GROUP BY t1.DEPT " +
+                "UNION " +
+                "SELECT tb1.DEPT AS DEPT, 0 AS FullInst, SUM(tb1.MaxAsstSal - tb1.salary) AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary, t2.maxAsstSal AS MaxAsstSal FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal FROM MAIN WHERE RNK = 'Asst' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1 " +
+                "LEFT OUTER JOIN " +
+                "(SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS \"Inversion $ Amount\" FROM MAIN as t1 " +
+                "INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME WHERE tb2.NAME IS NULL " +
+                "GROUP BY tb1.DEPT " +
+                "UNION " +
+                "SELECT table1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, SUM(table1.MaxAssoSal - table1.salary) AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM (SELECT t1.DEPT, t1.NAME, t2.maxAssoSal AS MaxAssoSal, t1.[9MSALARY] AS salary FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal FROM MAIN WHERE RNK = 'Asso' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAssoSal) AS table1 LEFT OUTER JOIN (SELECT tb1.DEPT, tb1.NAME, tb1.MaxAsstSal - tb1.salary AS \"Inversion Amount\" " +
+                "FROM (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary, t2.maxAsstSal AS MaxAsstSal FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal FROM MAIN WHERE RNK = 'Asst' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1 LEFT OUTER JOIN " +
+                "(SELECT t1.DEPT, t1.NAME AS NAME, t2.maxInstrSal - t1.[9MSALARY] AS \"Inversion $ Amount\" FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME " +
+                "WHERE tb2.NAME IS NULL) as table2 ON table1.DEPT = table2.DEPT AND table1.NAME = table2.NAME WHERE table2.NAME IS NULL " +
+                "GROUP BY table1.DEPT UNION SELECT t1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, SUM(t2.maxInstSal - t1.[9MSALARY]) AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM MAIN as t1 INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 " +
+                "ON t1.DEPT = t2.DEPT WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT UNION " +
+                "SELECT tb1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, SUM(tb1.maxAsstSal - tb1.salary) AS AssoAsst, 0 AS AsstInst " +
+                "FROM (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary, t2.maxAsstSal AS maxAsstSal FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal FROM MAIN WHERE RNK = 'Asst' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1 LEFT OUTER JOIN (SELECT t1.DEPT AS DEPT, t1.NAME FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxInstSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME WHERE tb2.NAME IS NULL " +
+                "GROUP BY tb1.DEPT UNION SELECT t1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, SUM(t2.maxInstSal - t1.[9MSALARY]) AS AsstInst " +
+                "FROM MAIN as t1 INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT) AS t ON t.DEPT = m.DEPT WHERE t.DEPT IS NOT NULL GROUP BY t.DEPT, m.CLG) AS ta " +
+                "LEFT JOIN " + //
+                 "(SELECT DISTINCT t1.CLG AS College, t1.DEPT AS Department, " +
+                "t2.[ASST < INSTR] AS [Asst<Inst], " +
+                "t2.[ASSO < INSTR] AS [Asso<Inst], " +
+                "t2.[FULL < INSTR] AS [Full<Inst], " +
+                "t2.[ASSO < ASST] AS [Asso<Asst], " +
+                "t2.[FULL < ASST] AS [Full<Asst], " +
+                "t2.[FULL < ASSO] AS [Full<Asso],\n"
+                + " t2.[ASST < INSTR] + t2.[ASSO < INSTR] + t2.[FULL < INSTR] + t2.[ASSO < ASST] + t2.[FULL < ASST] + t2.[FULL < ASSO] AS [Total] \n"
+                + "FROM MAIN AS t1\n"
+                + "\n"
+                + "INNER JOIN\n"
+                + "\n"
+                + "(SELECT DEPT, SUM([ASST<INSTR1]) AS [ASST < INSTR], SUM([ASSO<INSTR1]) AS [ASSO < INSTR], SUM([FULL<INSTR1]) AS [FULL < INSTR], SUM([ASSO<ASST1]) AS [ASSO < ASST],\n"
+                + "SUM([FULL<ASST1]) AS [FULL < ASST], SUM([FULL<ASSO1]) AS [FULL < ASSO]\n"
+                + "\n"
+                + "FROM\n"
+                + "\n"
+                + "(SELECT DEPT, COUNT(*) AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Asst' AND MinInvRank = 1)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT, 0 AS [ASST<INSTR1], COUNT(*) AS [ASSO<INSTR1],  0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Asso' AND MinInvRank = 1)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT,  0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], COUNT(*) AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Prof' AND MinInvRank = 1)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT, 0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], COUNT(*) AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Asso' AND MinInvRank = 2)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT, 0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], COUNT(*) AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Prof' AND MinInvRank = 2)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT [%$##@_Alias].DEPT, 0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], COUNT(*) AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Prof' AND MinInvRank = 3)  AS [%$##@_Alias]\n"
+                + "GROUP BY [%$##@_Alias].DEPT)\n"
+                + "GROUP BY DEPT) AS t2\n"
+                + "\n"
+                + "\n"
+                + "ON t1.DEPT = t2.DEPT\n"
+                + "ORDER BY CLG ) AS tr " +
+                "ON ta.College = tr.College AND ta.Department = tr.Department ;";
+        }
+
+        /// <summary>
+        /// summary totals report
+        /// </summary>
+        /// <returns></returns>
+        public string numAndDolInvTotals()
+        {
+            return "SELECT ta.College, SUM(tr.[Asst<Inst] + tr.[Asso<Inst] + tr.[Full<Inst] + tr.[Asso<Asst] + tr.[Full<Asst] + tr.[Full<Asso]) AS [# Of Inversions], " +
+                "FORMAT(SUM(ta.[Asst<Inst] + ta.[Asso<Inst] + ta.[Full<Inst] + ta.[Asso<Asst] + ta.[Full<Asst] + ta.[Full<Asso]),'$#,###,##0') AS [$ Amount] FROM " +
+                "(SELECT DISTINCT m.CLG AS College, " +
+                "t.DEPT AS Department, " +
+                "SUM(AsstInst) AS [Asst<Inst], " +
+                "SUM(AssoInst) AS [Asso<Inst], " +
+                "SUM(FullInst) AS [Full<Inst], " +
+                "SUM(AssoAsst) AS [Asso<Asst], " +
+                "SUM(FullAsst) AS [Full<Asst], " +
+                "SUM(FullAsso) AS [Full<Asso], " +
+                "FORMAT(SUM(FullInst) + SUM(FullAsst) + SUM(FullAsso) + SUM(AssoInst) + SUM(AssoAsst) + SUM(AsstInst),'$#,###,##0') AS Total " +
+                "FROM (SELECT DISTINCT CLG, DEPT FROM MAIN) as m LEFT JOIN " +
+                "(SELECT t1.DEPT AS DEPT, SUM(t2.maxInstrSal - t1.[9MSALARY]) AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM MAIN as t1 " +
+                "INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal " +
+                "FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal GROUP BY t1.DEPT " +
+                "UNION " +
+                "SELECT tb1.DEPT AS DEPT, 0 AS FullInst, SUM(tb1.MaxAsstSal - tb1.salary) AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary, t2.maxAsstSal AS MaxAsstSal FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal FROM MAIN WHERE RNK = 'Asst' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1 " +
+                "LEFT OUTER JOIN " +
+                "(SELECT t1.DEPT, t1.NAME, t2.maxInstrSal - t1.[9MSALARY] AS \"Inversion $ Amount\" FROM MAIN as t1 " +
+                "INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME WHERE tb2.NAME IS NULL " +
+                "GROUP BY tb1.DEPT " +
+                "UNION " +
+                "SELECT table1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, SUM(table1.MaxAssoSal - table1.salary) AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM (SELECT t1.DEPT, t1.NAME, t2.maxAssoSal AS MaxAssoSal, t1.[9MSALARY] AS salary FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal FROM MAIN WHERE RNK = 'Asso' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAssoSal) AS table1 LEFT OUTER JOIN (SELECT tb1.DEPT, tb1.NAME, tb1.MaxAsstSal - tb1.salary AS \"Inversion Amount\" " +
+                "FROM (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary, t2.maxAsstSal AS MaxAsstSal FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal FROM MAIN WHERE RNK = 'Asst' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1 LEFT OUTER JOIN " +
+                "(SELECT t1.DEPT, t1.NAME AS NAME, t2.maxInstrSal - t1.[9MSALARY] AS \"Inversion $ Amount\" FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstrSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Prof' AND t1.[9MSALARY] < t2.maxInstrSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME " +
+                "WHERE tb2.NAME IS NULL) as table2 ON table1.DEPT = table2.DEPT AND table1.NAME = table2.NAME WHERE table2.NAME IS NULL " +
+                "GROUP BY table1.DEPT UNION SELECT t1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, SUM(t2.maxInstSal - t1.[9MSALARY]) AS AssoInst, 0 AS AssoAsst, 0 AS AsstInst " +
+                "FROM MAIN as t1 INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 " +
+                "ON t1.DEPT = t2.DEPT WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT UNION " +
+                "SELECT tb1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, SUM(tb1.maxAsstSal - tb1.salary) AS AssoAsst, 0 AS AsstInst " +
+                "FROM (SELECT t1.DEPT AS DEPT, t1.NAME AS NAME, t1.[9MSALARY] AS salary, t2.maxAsstSal AS maxAsstSal FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal FROM MAIN WHERE RNK = 'Asst' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxAsstSal) AS tb1 LEFT OUTER JOIN (SELECT t1.DEPT AS DEPT, t1.NAME FROM MAIN as t1 INNER JOIN " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Asso' AND t1.[9MSALARY] < t2.maxInstSal) AS tb2 ON tb1.DEPT = tb2.DEPT AND tb1.NAME = tb2.NAME WHERE tb2.NAME IS NULL " +
+                "GROUP BY tb1.DEPT UNION SELECT t1.DEPT AS DEPT, 0 AS FullInst, 0 AS FullAsst, 0 AS FullAsso, 0 AS AssoInst, 0 AS AssoAsst, SUM(t2.maxInstSal - t1.[9MSALARY]) AS AsstInst " +
+                "FROM MAIN as t1 INNER JOIN (SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxInstSal FROM MAIN WHERE RNK = 'Instr' GROUP BY DEPT, RNK) AS t2 ON t1.DEPT = t2.DEPT " +
+                "WHERE t1.RNK = 'Asst' AND t1.[9MSALARY] < t2.maxInstSal GROUP BY t1.DEPT) AS t ON t.DEPT = m.DEPT WHERE t.DEPT IS NOT NULL GROUP BY t.DEPT, m.CLG) AS ta " +
+                "LEFT JOIN " + //
+                 "(SELECT DISTINCT t1.CLG AS College, t1.DEPT AS Department, " +
+                "t2.[ASST < INSTR] AS [Asst<Inst], " +
+                "t2.[ASSO < INSTR] AS [Asso<Inst], " +
+                "t2.[FULL < INSTR] AS [Full<Inst], " +
+                "t2.[ASSO < ASST] AS [Asso<Asst], " +
+                "t2.[FULL < ASST] AS [Full<Asst], " +
+                "t2.[FULL < ASSO] AS [Full<Asso],\n"
+                + " t2.[ASST < INSTR] + t2.[ASSO < INSTR] + t2.[FULL < INSTR] + t2.[ASSO < ASST] + t2.[FULL < ASST] + t2.[FULL < ASSO] AS [Total] \n"
+                + "FROM MAIN AS t1\n"
+                + "\n"
+                + "INNER JOIN\n"
+                + "\n"
+                + "(SELECT DEPT, SUM([ASST<INSTR1]) AS [ASST < INSTR], SUM([ASSO<INSTR1]) AS [ASSO < INSTR], SUM([FULL<INSTR1]) AS [FULL < INSTR], SUM([ASSO<ASST1]) AS [ASSO < ASST],\n"
+                + "SUM([FULL<ASST1]) AS [FULL < ASST], SUM([FULL<ASSO1]) AS [FULL < ASSO]\n"
+                + "\n"
+                + "FROM\n"
+                + "\n"
+                + "(SELECT DEPT, COUNT(*) AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Asst' AND MinInvRank = 1)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT, 0 AS [ASST<INSTR1], COUNT(*) AS [ASSO<INSTR1],  0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Asso' AND MinInvRank = 1)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT,  0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], COUNT(*) AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Prof' AND MinInvRank = 1)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT, 0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], COUNT(*) AS [ASSO<ASST1], 0 AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Asso' AND MinInvRank = 2)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "\n"
+                + "SELECT DEPT, 0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], COUNT(*) AS [FULL<ASST1], 0 AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Prof' AND MinInvRank = 2)  AS [%$##@_Alias]\n"
+                + "GROUP BY DEPT\n"
+                + "\n"
+                + "\n"
+                + "UNION\n"
+                + "\n"
+                + "\n"
+                + "SELECT [%$##@_Alias].DEPT, 0 AS [ASST<INSTR1], 0 AS [ASSO<INSTR1], 0 AS [FULL<INSTR1], 0 AS [ASSO<ASST1], 0 AS [FULL<ASST1], COUNT(*) AS [FULL<ASSO1]\n"
+                + "FROM (SELECT DEPT, NAME\n"
+                + "FROM\n"
+                + "(SELECT DEPT, NAME, InvTable.Rank, MIN(invRankNum) AS MinInvRank\n"
+                + "	FROM \n"
+                + "		(SELECT *\n"
+                + "		FROM \n"
+                + "			(SELECT ID, CLG, MAIN.DEPT, NAME, Main.RNK as Rank, Switch( MAIN.RNK='Prof', 4,\n"
+                + "											 MAIN.RNK='Asso', 3,\n"
+                + "											  MAIN.RNK='Asst', 2,\n"
+                + "											 MAIN.RNK='Instr', 1,\n"
+                + "										   true, 0) AS RankNum,\n"
+                + "										   [9MSALARY], maxTable.RNK,\n"
+                + "											Switch( maxTable.RNK='Prof', 4,\n"
+                + "											 maxTable.RNK='Asso', 3,\n"
+                + "											  maxTable.RNK='Asst', 2,\n"
+                + "											 maxTable.RNK='Instr', 1,\n"
+                + "										   true, 0) AS InvRankNum, maxRankSal\n"
+                + "			FROM MAIN\n"
+                + "			INNER JOIN\n"
+                + "				(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxRankSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Instr'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAssoSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asso'\n"
+                + "				GROUP BY DEPT, RNK\n"
+                + "				UNION\n"
+                + "				SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS maxAsstSal\n"
+                + "				FROM MAIN\n"
+                + "				WHERE RNK = 'Asst'\n"
+                + "				GROUP BY DEPT, RNK) AS maxTable\n"
+                + "			ON MAIN.DEPT = maxTable.DEPT\n"
+                + "			WHERE MAIN.RNK <> 'Instr' AND MAIN.RNK <> maxTable.RNK AND MAIN.[9MSALARY] < maxRankSal\n"
+                + "			ORDER BY MAIN.DEPT, MAIN.NAME) AS InvTable\n"
+                + "	WHERE RankNum > InvRankNum)\n"
+                + "	GROUP BY DEPT, NAME, InvTable.Rank)\n"
+                + "WHERE InvTable.Rank = 'Prof' AND MinInvRank = 3)  AS [%$##@_Alias]\n"
+                + "GROUP BY [%$##@_Alias].DEPT)\n"
+                + "GROUP BY DEPT) AS t2\n"
+                + "\n"
+                + "\n"
+                + "ON t1.DEPT = t2.DEPT\n"
+                + "ORDER BY CLG ) AS tr " +
+                "ON ta.College = tr.College AND ta.Department = tr.Department " +
+                "GROUP BY ta.College";
+        }
+
+        #endregion
     }
 }
