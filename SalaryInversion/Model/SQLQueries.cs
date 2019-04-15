@@ -133,7 +133,6 @@ namespace SalaryInversion
         /// <returns>A string with the SQL query.</returns>
         public string InvertedEmployeesSQL()
         {
-            // FORMAT(SUM(AsstInst),'$#,###,##0')
             return "SELECT t1.DEPT AS [Department], t1.NAME AS [Name], t1.RNK AS [Rank], " +
                 "FORMAT(t1.[9MSALARY],'$#,###,##0') AS [Salary], " +
                 "FORMAT(t2.MaxProfSal,'$#,###,##0') AS [Max Prof Salary], " +
