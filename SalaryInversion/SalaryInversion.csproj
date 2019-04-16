@@ -143,6 +143,7 @@
     <Content Include="Data\2019equitymodelabbreviated.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Data\openFile.png" />
     <Resource Include="Data\salaryIcon.png" />
     <Resource Include="Data\ExampleDatabase.PNG" />
   </ItemGroup>

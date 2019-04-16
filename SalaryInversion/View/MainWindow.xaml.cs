@@ -128,6 +128,10 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport1_Click(object sender, RoutedEventArgs e)
         {
+            if (spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
             DataSet reportData = dataProcessor.CountInversionTypeByDepartment();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
@@ -144,6 +148,10 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport2_Click(object sender, RoutedEventArgs e)
         {
+            if (spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
             DataSet reportData = dataProcessor.CountInversionTypeByCollege();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
@@ -160,6 +168,10 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport3_Click(object sender, RoutedEventArgs e)
         {
+            if(spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
             DataSet reportData = dataProcessor.CostInversionTypeByDepartment();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
@@ -175,6 +187,10 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport4_Click(object sender, RoutedEventArgs e)
         {
+            if (spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
             DataSet reportData = dataProcessor.CostInversionTypeByCollege();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
@@ -191,6 +207,10 @@ namespace SalaryInversion
         /// <param name="e"></param>
         private void BtnReport5_Click(object sender, RoutedEventArgs e)
         {
+            if (spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
             DataSet reportData = dataProcessor.InvertedEmployees();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
@@ -200,18 +220,44 @@ namespace SalaryInversion
             lblReportName.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Fills the Report Data grid with the Summary by Dept report.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnReport6_Click(object sender, RoutedEventArgs e)
         {
+            if (spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
             DataSet reportData = dataProcessor.SummaryReport();
-            dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(6);
             lblReportName.Content = "Summary";
             lblReportName.Visibility = Visibility.Visible;
         }
+
+        /// <summary>
+        /// Fills the Report Data grid with the Summary by College report.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnReport7_Click(object sender, RoutedEventArgs e)
+        {
+            if (spHelpMenu.IsVisible)
+            {
+                showContainer("Report");
+            }
+            DataSet reportData = dataProcessor.SummaryReportTotals();
+            dgReport.ItemsSource = reportData.Tables[0].AsDataView();
+            HighlightSelectedReport(7);
+            lblReportName.Content = "Summary Totals";
+            lblReportName.Visibility = Visibility.Visible;
+        }
         #endregion
-        
+
         #region HELPER FUNCTIONS
 
         /// <summary>
@@ -244,7 +290,6 @@ namespace SalaryInversion
                 btnWSGenerate.IsEnabled = true;
                 btnMMGenerate.IsEnabled = true;
                 miSaveAs.IsEnabled = false;
-                spSideMenu.IsEnabled = false;
                 showContainer("SelectFile");
             }
         }
@@ -261,9 +306,8 @@ namespace SalaryInversion
             btnMMGenerate.IsEnabled = false;
             btnWSGenerate.IsEnabled = false;
 
-
-            defaultReport();
             showContainer("Report");
+            defaultReport();
         }
 
         /// <summary>
@@ -310,6 +354,7 @@ namespace SalaryInversion
                 rectangle4.Visibility = Visibility.Hidden;
                 rectangle5.Visibility = Visibility.Hidden;
                 rectangle6.Visibility = Visibility.Hidden;
+                rectangle7.Visibility = Visibility.Hidden;
                 switch (reportNumber)
                 {
                     case 1:
@@ -330,6 +375,9 @@ namespace SalaryInversion
                     case 6:
                         rectangle6.Visibility = Visibility.Visible;
                         break;
+                    case 7:
+                        rectangle7.Visibility = Visibility.Visible;
+                        break;
                 }
             }
         }
@@ -342,23 +390,22 @@ namespace SalaryInversion
             rectangle4.Visibility = Visibility.Hidden;
             rectangle5.Visibility = Visibility.Hidden;
             rectangle6.Visibility = Visibility.Hidden;
+            rectangle7.Visibility = Visibility.Hidden;
             spFileSelect.Visibility = Visibility.Hidden;
             spHelpMenu.Visibility = Visibility.Hidden;
-            bDGReport.Visibility = Visibility.Hidden;
-            lblReportName.Visibility = Visibility.Hidden;
-            spSideMenu.IsEnabled = false;
+            report.Visibility = Visibility.Hidden;
             switch (sContainer)
             {
                 case "HelpMenu":
                     spHelpMenu.Visibility = Visibility.Visible;
                     break;
                 case "Report":
-                    bDGReport.Visibility = Visibility.Visible;
-                    lblReportName.Visibility = Visibility.Visible;
+                    report.Visibility = Visibility.Visible;
                     spSideMenu.IsEnabled = true;
                     break;
                 case "SelectFile":
                     spFileSelect.Visibility = Visibility.Visible;
+                    spSideMenu.IsEnabled = false;
                     break;
             }
         }
