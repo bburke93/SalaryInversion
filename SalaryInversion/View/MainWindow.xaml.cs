@@ -235,7 +235,7 @@ namespace SalaryInversion
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(6);
-            lblReportName.Content = "Summary";
+            lblReportName.Content = "Department Summary";
             lblReportName.Visibility = Visibility.Visible;
         }
 
@@ -253,7 +253,7 @@ namespace SalaryInversion
             DataSet reportData = dataProcessor.SummaryReportTotals();
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             HighlightSelectedReport(7);
-            lblReportName.Content = "Summary Totals";
+            lblReportName.Content = "College Summary";
             lblReportName.Visibility = Visibility.Visible;
         }
         #endregion

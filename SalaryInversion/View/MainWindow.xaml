@@ -61,7 +61,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label6" Content="Summary" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label6" Content="Dept. summary" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle6" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
@@ -71,7 +71,7 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="label7" Content="Summary Totals" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
+                    <Label x:Name="label7" Content="Clg. summary" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D8D9DB"/>
                     <Rectangle x:Name="rectangle7" Height="50" Width="5" Fill="#E9EBC3" Visibility="Hidden"/>
                 </Grid>
             </Button>
