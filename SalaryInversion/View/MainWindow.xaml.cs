@@ -17,14 +17,18 @@ namespace SalaryInversion
     public partial class MainWindow : Window
     {
         #region Member Variables
+
         /// <summary>
         /// The database file of Professor Salaries
         /// </summary>
         string sFilename;
+
         private Process dataProcessor;
+
         #endregion
         
         #region UI METHODS
+
         public MainWindow()
         {
             InitializeComponent();
@@ -232,7 +236,7 @@ namespace SalaryInversion
             {
                 showContainer("Report");
             }
-            DataSet reportData = dataProcessor.SummaryReport();
+            DataSet reportData = dataProcessor.SummaryDepartment();
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             bDGReport.Visibility = Visibility.Visible;
             HighlightSelectedReport(6);
@@ -251,12 +255,13 @@ namespace SalaryInversion
             {
                 showContainer("Report");
             }
-            DataSet reportData = dataProcessor.SummaryReportTotals();
+            DataSet reportData = dataProcessor.SummaryCollege();
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             HighlightSelectedReport(7);
             lblReportName.Content = "College Summary";
             lblReportName.Visibility = Visibility.Visible;
         }
+
         #endregion
 
         #region HELPER FUNCTIONS
@@ -454,7 +459,7 @@ namespace SalaryInversion
 
         void defaultReport()
         {
-            DataSet reportData = dataProcessor.SummaryReport();
+            DataSet reportData = dataProcessor.SummaryDepartment();
             dgReport.ItemsSource = null;
             dgReport.ItemsSource = reportData.Tables[0].AsDataView();
             bDGReport.Visibility = Visibility.Visible;
@@ -462,6 +467,7 @@ namespace SalaryInversion
             lblReportName.Content = "Summary";
             lblReportName.Visibility = Visibility.Visible;
         }
+
         #endregion
     }
 }

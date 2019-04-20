@@ -10,7 +10,13 @@ namespace SalaryInversion
 {
     class Process
     {
+        /// <summary>
+        /// Class to query databases.
+        /// </summary>
         private DataAccess db;
+        /// <summary>
+        /// Class containing query strings for use with DataAccess class.
+        /// </summary>
         private SQLQueries query;
 
         public Process(string filePath)
@@ -69,16 +75,24 @@ namespace SalaryInversion
             return db.ExecuteSQLStatement(query.InvertedEmployeesSQL(), ref returnedRows);
         }
 
-        public DataSet SummaryReport()
+        /// <summary>
+        /// Gets a DataSet object for the Department Summary report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with data showing count and cost by department.</returns>
+        public DataSet SummaryDepartment()
         {
             int returnedRows = 0;
-            return db.ExecuteSQLStatement(query.numAndDolInv(), ref returnedRows);
+            return db.ExecuteSQLStatement(query.SummaryDepartmentSQL(), ref returnedRows);
         }
 
-        public DataSet SummaryReportTotals()
+        /// <summary>
+        /// Gets a DataSet object for the College Summary report.
+        /// </summary>
+        /// <returns>A DataSet containing a single table with data showing count and cost by college.</returns>
+        public DataSet SummaryCollege()
         {
             int returnedRows = 0;
-            return db.ExecuteSQLStatement(query.numAndDolInvTotals(), ref returnedRows);
+            return db.ExecuteSQLStatement(query.SummaryCollegeSQL(), ref returnedRows);
         }
     }
 }

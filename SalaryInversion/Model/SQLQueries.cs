@@ -8,7 +8,7 @@ namespace SalaryInversion
 {
     class SQLQueries
     {
-        #region Cost Report
+        #region Cost Reports
 
         /// <summary>
         /// SQL query to generate the cost of inversions by department.
@@ -125,58 +125,7 @@ namespace SalaryInversion
 
         #endregion
 
-        #region Inverted Employees
-
-        /// <summary>
-        /// SQL query to generate the inverted employees report.
-        /// </summary>
-        /// <returns>A string with the SQL query.</returns>
-        public string InvertedEmployeesSQL()
-        {
-            return "SELECT t1.DEPT AS [Department], t1.NAME AS [Name], t1.RNK AS [Rank], " +
-                "FORMAT(t1.[9MSALARY],'$#,###,##0') AS [Salary], " +
-                "FORMAT(t2.MaxProfSal,'$#,###,##0') AS [Max Prof Salary], " +
-                "FORMAT(t2.MaxAssoSal,'$#,###,##0') AS [Max Asso Salary], " +
-                "FORMAT(t2.MaxAsstSal,'$#,###,##0') AS [Max Asst Salary], " +
-                "FORMAT(t2.MaxInstrSal,'$#,###,##0') AS [Max Instr Salary] " +
-                "FROM MAIN as t1 " +
-                "INNER JOIN " +
-                "(SELECT DEPT, SUM(MaxProfSal1) AS MaxProfSal, SUM(MaxAssoSal1) AS MaxAssoSal, " +
-                "SUM(MaxAsstSal1) AS MaxAsstSal, SUM(MaxInstrSal1) AS MaxInstrSal " +
-                "FROM " +
-                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1 " +
-                "FROM MAIN " +
-                "WHERE RNK = 'Prof' " +
-                "GROUP BY DEPT, RNK " +
-                "UNION " +
-                "SELECT DEPT, RNK,  0 AS MaxProfSal1, MAX(MAIN.[9MSALARY]) AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1 " +
-                "FROM MAIN " +
-                "WHERE RNK = 'Asso' " +
-                "GROUP BY DEPT, RNK " +
-                "UNION " +
-                "SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, MAX(MAIN.[9MSALARY]) AS maxAsstSal1, 0 AS MaxInstrSal1 " +
-                "FROM MAIN " +
-                "WHERE RNK = 'Asst' " +
-                "GROUP BY DEPT, RNK " +
-                "UNION " +
-                "SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS maxAsstSal1, MAX(MAIN.[9MSALARY]) AS MaxInstrSal1 " +
-                "FROM MAIN " +
-                "WHERE RNK = 'Instr' " +
-                "GROUP BY DEPT, RNK) " +
-                "GROUP BY DEPT) AS t2 " +
-                "ON t1.DEPT = t2.DEPT " +
-                "WHERE(RNK = 'Prof' AND[9MSALARY] <= MaxAssoSal) " +
-                "OR(RNK = 'Prof' AND[9MSALARY] <= MaxAsstSal) " +
-                "OR(RNK = 'Prof' AND[9MSALARY] <= MaxInstrSal) " +
-                "OR(RNK = 'Asso' AND[9MSALARY] <= MaxAsstSal) " +
-                "OR(RNK = 'Asso' AND[9MSALARY] <= MaxInstrSal) " +
-                "OR(RNK = 'Asst' AND[9MSALARY] <= MaxInstrSal) " +
-                "ORDER BY t1.DEPT, RNK";
-        }
-
-        #endregion
-
-        #region Count Report
+        #region Count Reports
 
         /// <summary>
         /// SQL query to generate the count of inversions by department.
@@ -789,14 +738,65 @@ namespace SalaryInversion
         }
 
         #endregion
+
+        #region Inverted Employees Report
+
+        /// <summary>
+        /// SQL query to generate the inverted employees report.
+        /// </summary>
+        /// <returns>A string with the SQL query.</returns>
+        public string InvertedEmployeesSQL()
+        {
+            return "SELECT t1.DEPT AS [Department], t1.NAME AS [Name], t1.RNK AS [Rank], " +
+                "FORMAT(t1.[9MSALARY],'$#,###,##0') AS [Salary], " +
+                "FORMAT(t2.MaxProfSal,'$#,###,##0') AS [Max Prof Salary], " +
+                "FORMAT(t2.MaxAssoSal,'$#,###,##0') AS [Max Asso Salary], " +
+                "FORMAT(t2.MaxAsstSal,'$#,###,##0') AS [Max Asst Salary], " +
+                "FORMAT(t2.MaxInstrSal,'$#,###,##0') AS [Max Instr Salary] " +
+                "FROM MAIN as t1 " +
+                "INNER JOIN " +
+                "(SELECT DEPT, SUM(MaxProfSal1) AS MaxProfSal, SUM(MaxAssoSal1) AS MaxAssoSal, " +
+                "SUM(MaxAsstSal1) AS MaxAsstSal, SUM(MaxInstrSal1) AS MaxInstrSal " +
+                "FROM " +
+                "(SELECT DEPT, RNK, MAX(MAIN.[9MSALARY]) AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1 " +
+                "FROM MAIN " +
+                "WHERE RNK = 'Prof' " +
+                "GROUP BY DEPT, RNK " +
+                "UNION " +
+                "SELECT DEPT, RNK,  0 AS MaxProfSal1, MAX(MAIN.[9MSALARY]) AS MaxAssoSal1, 0 AS MaxAsstSal1, 0 AS MaxInstrSal1 " +
+                "FROM MAIN " +
+                "WHERE RNK = 'Asso' " +
+                "GROUP BY DEPT, RNK " +
+                "UNION " +
+                "SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, MAX(MAIN.[9MSALARY]) AS maxAsstSal1, 0 AS MaxInstrSal1 " +
+                "FROM MAIN " +
+                "WHERE RNK = 'Asst' " +
+                "GROUP BY DEPT, RNK " +
+                "UNION " +
+                "SELECT DEPT, RNK,  0 AS MaxProfSal1, 0 AS MaxAssoSal1, 0 AS maxAsstSal1, MAX(MAIN.[9MSALARY]) AS MaxInstrSal1 " +
+                "FROM MAIN " +
+                "WHERE RNK = 'Instr' " +
+                "GROUP BY DEPT, RNK) " +
+                "GROUP BY DEPT) AS t2 " +
+                "ON t1.DEPT = t2.DEPT " +
+                "WHERE(RNK = 'Prof' AND[9MSALARY] <= MaxAssoSal) " +
+                "OR(RNK = 'Prof' AND[9MSALARY] <= MaxAsstSal) " +
+                "OR(RNK = 'Prof' AND[9MSALARY] <= MaxInstrSal) " +
+                "OR(RNK = 'Asso' AND[9MSALARY] <= MaxAsstSal) " +
+                "OR(RNK = 'Asso' AND[9MSALARY] <= MaxInstrSal) " +
+                "OR(RNK = 'Asst' AND[9MSALARY] <= MaxInstrSal) " +
+                "ORDER BY t1.DEPT, RNK";
+        }
+
+        #endregion
             
-        #region Summary
+        #region Summary Reports
         
         /// <summary>
         /// Summary report
         /// </summary>
         /// <returns></returns>
-        public string numAndDolInv()
+        public string SummaryDepartmentSQL()
         {
             return "SELECT ta.College, ta.Department, (tr.[Asst<Inst] + tr.[Asso<Inst] + tr.[Full<Inst] + tr.[Asso<Asst] + tr.[Full<Asst] + tr.[Full<Asso]) AS [# Of Inversions], " +
                 "FORMAT(ta.[Asst<Inst] + ta.[Asso<Inst] + ta.[Full<Inst] + ta.[Asso<Asst] + ta.[Full<Asst] + ta.[Full<Asso],'$#,###,##0') AS [$ Amount] FROM " +
@@ -1151,7 +1151,7 @@ namespace SalaryInversion
         /// summary totals report
         /// </summary>
         /// <returns></returns>
-        public string numAndDolInvTotals()
+        public string SummaryCollegeSQL()
         {
             return "SELECT ta.College, SUM(tr.[Asst<Inst] + tr.[Asso<Inst] + tr.[Full<Inst] + tr.[Asso<Asst] + tr.[Full<Asst] + tr.[Full<Asso]) AS [# Of Inversions], " +
                 "FORMAT(SUM(ta.[Asst<Inst] + ta.[Asso<Inst] + ta.[Full<Inst] + ta.[Asso<Asst] + ta.[Full<Asst] + ta.[Full<Asso]),'$#,###,##0') AS [$ Amount] FROM " +
