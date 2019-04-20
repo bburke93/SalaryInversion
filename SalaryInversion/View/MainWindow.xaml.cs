@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Data;
+using System.Reflection;
 
 namespace SalaryInversion
 {
@@ -261,36 +262,59 @@ namespace SalaryInversion
         #region HELPER FUNCTIONS
 
         /// <summary>
+        /// Handle thrown errors.
+        /// </summary>
+        /// <param name="errorClass">Class in which the error occurred.</param>
+        /// <param name="errorMethod">The method in which the error occurred.</param>
+        /// <param name="errorMessage">Error message.</param>
+        private void HandleError(string errorClass, string errorMethod, string errorMessage)
+        {
+            try
+            {
+                MessageBox.Show(this, errorClass + "." + errorMethod + " -> " + errorMessage, "Error");
+            }
+            catch (System.Exception ex)
+            {
+                System.IO.File.AppendAllText(@"C:\Error.txt", Environment.NewLine + "HandleError Exception: " + ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Creates an Open file Dialogue box to browse your files and select an Access DB file
         /// </summary>
         void OpenFile()
         {
-            // Create OpenFileDialog 
-            OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Set filter for file extension and default file extension 
-            dlg.DefaultExt = ".mdb";
-            dlg.Filter = "Access 2000 Database Files (*.mdb)|*.mdb";
-
-            // Switch back to following line if functionality is implemented to allow .accdb files
-            //dlg.Filter = "Access Database Files (*.accdb)|*.accdb|Access 2000 Database Files (*.mdb)|*.mdb";
-
-            // Display OpenFileDialog by calling ShowDialog method 
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Get the selected file name and display in a TextBox 
-            if (result.HasValue && result.Value)
+            try
             {
-                // Open document 
-                sFilename = dlg.FileName;
-                lFileName.Content = sFilename;
+                // Create OpenFileDialog 
+                OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-            
-                
-                btnWSGenerate.IsEnabled = true;
-                btnMMGenerate.IsEnabled = true;
-                miSaveAs.IsEnabled = false;
-                showContainer("SelectFile");
+                // Set filter for file extension and default file extension 
+                dlg.DefaultExt = ".mdb";
+                dlg.Filter = "Access 2000 Database Files (*.mdb)|*.mdb";
+
+                // Switch back to following line if functionality is implemented to allow .accdb files
+                //dlg.Filter = "Access Database Files (*.accdb)|*.accdb|Access 2000 Database Files (*.mdb)|*.mdb";
+
+                // Display OpenFileDialog by calling ShowDialog method 
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Get the selected file name and display in a TextBox 
+                if (result.HasValue && result.Value)
+                {
+                    // Open document 
+                    sFilename = dlg.FileName;
+                    lFileName.Content = sFilename;
+                    btnWSGenerate.IsEnabled = true;
+                    btnMMGenerate.IsEnabled = true;
+                    miSaveAs.IsEnabled = false;
+                    showContainer("SelectFile");
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name,
+                    MethodInfo.GetCurrentMethod().Name, ex.Message + "\nPlease select a compatible database file. Use help menu for more information.");
             }
         }
         
@@ -299,15 +323,25 @@ namespace SalaryInversion
         /// </summary>
         void GenerateReport()
         {
-            dataProcessor = new Process(sFilename);
+            try
+            {
+                dataProcessor = new Process(sFilename);
 
-            //I will databind the datagrid to the dataview property
-            miSaveAs.IsEnabled = true;
-            btnMMGenerate.IsEnabled = false;
-            btnWSGenerate.IsEnabled = false;
+                //I will databind the datagrid to the dataview property
+                miSaveAs.IsEnabled = true;
+                btnMMGenerate.IsEnabled = false;
+                btnWSGenerate.IsEnabled = false;
 
-            showContainer("Report");
-            defaultReport();
+                showContainer("Report");
+                defaultReport();
+            }
+            catch (Exception ex)
+            {
+                showContainer("SelectFile");
+                lFileName.Content = "No file selected";
+                HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name,
+                    MethodInfo.GetCurrentMethod().Name, ex.Message + "\nPlease select a compatible database file. Use help menu for more information.");
+            }
         }
 
         /// <summary>
@@ -329,14 +363,22 @@ namespace SalaryInversion
         /// <param name="encoder"></param>
         void SaveUsingEncoder(FrameworkElement visual, string fileName, BitmapEncoder encoder)
         {
-            RenderTargetBitmap bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-            bitmap.Render(visual);
-            BitmapFrame frame = BitmapFrame.Create(bitmap);
-            encoder.Frames.Add(frame);
-
-            using (var stream = File.Create(fileName))
+            try
             {
-                encoder.Save(stream);
+                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)visual.ActualWidth, (int)visual.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+                bitmap.Render(visual);
+                BitmapFrame frame = BitmapFrame.Create(bitmap);
+                encoder.Frames.Add(frame);
+
+                using (var stream = File.Create(fileName))
+                {
+                    encoder.Save(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(MethodInfo.GetCurrentMethod().DeclaringType.Name,
+                    MethodInfo.GetCurrentMethod().Name, ex.Message + "\nUnable to save file. Please try again.");
             }
         }
 

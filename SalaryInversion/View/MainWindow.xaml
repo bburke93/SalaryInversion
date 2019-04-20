@@ -171,7 +171,7 @@
 
         <!--HelpMenu-->
         <StackPanel x:Name="spHelpMenu" Grid.Column="1" Grid.Row="3" Margin="30,0,30,0" Visibility="Hidden">
-            <TextBlock Text="Database file must have columns CLG, DEPT, NAME, RNK, 9MSALARY." HorizontalAlignment="Center" FontSize="20"/>
+            <TextBlock Text="Only compatible with .mdb files. Database file must have a single table named Main with columns CLG, DEPT, NAME, RNK, 9MSALARY." HorizontalAlignment="Center" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
             <Label Content="Example Database" FontWeight="Bold"  VerticalAlignment="Bottom" Margin="10,30,0,10"/>
             <Image Source="/SalaryInversion;component/Data/ExampleDatabase.PNG"/>
         </StackPanel>
