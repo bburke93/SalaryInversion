@@ -120,14 +120,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\2017-18Inversion.xlsx" />
-    <None Include="Data\2018eqmodel-current-flat.xlsx" />
-    <None Include="Data\2018eqmodel-current.xlsx" />
-    <None Include="Data\2019eqmodel-flat.xlsx" />
-    <None Include="Data\2019eqmodel.xlsx" />
-    <None Include="Data\2019eqmodelabbreviated.csv" />
-    <None Include="Data\Salary Inversion Presentation - 2018-2019 data.pptx" />
-    <None Include="Data\SalaryInversion2018.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -137,13 +129,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\2019equitymodelabbreviated.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\2019equitymodelabbreviated.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Data\openFile.png" />
     <Resource Include="Data\salaryIcon.png" />
     <Resource Include="Data\ExampleDatabase.PNG" />
   </ItemGroup>
@@ -153,8 +141,6 @@
       <Name>SalaryInversion.Windows.Theme</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
